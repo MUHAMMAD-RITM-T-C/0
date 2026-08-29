@@ -1,183 +1,952 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html class="dark" dir="rtl" lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R.I.T.M | Freelance Ops</title>
-<meta name="description" content="R.I.T.M — خدمات فریلنس ادیت ویدئو و طراحی وب، تحویل سریع و پشتیبانی کامل.">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.min.css">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>RITM - آژانس خلاقیت دیجیتال</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#d0bcff",
+                        "on-secondary": "#002e6a",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#d0bcff",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-container": "#ca801e",
+                        "on-secondary-container": "#e6ecff",
+                        "on-background": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-dim": "#131313",
+                        "outline-variant": "#494454",
+                        "surface-container": "#201f1f",
+                        "outline": "#958ea0",
+                        "on-secondary-fixed": "#001a42",
+                        "secondary": "#adc6ff",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-tertiary-fixed": "#2c1700",
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-container": "#3f2300",
+                        "on-primary-fixed": "#23005c",
+                        "primary-fixed": "#e9ddff",
+                        "primary": "#d0bcff",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-primary-container": "#340080",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-primary-fixed-variant": "#5516be",
+                        "inverse-primary": "#6d3bd7",
+                        "surface-bright": "#3a3939",
+                        "primary-container": "#a078ff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#3c0091",
+                        "on-error": "#690005",
+                        "surface-variant": "#353534",
+                        "tertiary": "#ffb869",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#482900",
+                        "secondary-container": "#0566d9"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["Vazirmatn"],
+                        "body-lg": ["Vazirmatn"],
+                        "code-label": ["JetBrains Mono"],
+                        "body-md": ["Vazirmatn"],
+                        "display-lg": ["Vazirmatn"],
+                        "display-lg-mobile": ["Vazirmatn"],
+                        "headline-md": ["Vazirmatn"]
+                    },
+                    fontSize: {
+                        "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.8", fontWeight: "400" }],
+                        "code-label": ["14px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "display-lg-mobile": ["40px", { lineHeight: "1.2", fontWeight: "800" }],
+                        "headline-md": ["32px", { lineHeight: "1.4", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ── Reset & Base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Vazirmatn', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ── Glassmorphism ── */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top-color: rgba(255, 255, 255, 0.2);
+            border-right-color: rgba(255, 255, 255, 0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 10;
+        }
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 10;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        /* ── Glows ── */
+        .neon-glow-primary {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(208, 188, 255, 0.5);
+        }
+        .btn-primary {
+            background-color: #8b5cf6;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* ── Ambient Orbs ── */
+        .ambient-glow {
+            position: fixed;
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0) 70%);
+            top: -20vw;
+            right: -20vw;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(80px);
+        }
+        .ambient-glow-secondary {
+            position: fixed;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(5, 102, 217, 0.12) 0%, rgba(5, 102, 217, 0) 70%);
+            bottom: -10vw;
+            left: -10vw;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(80px);
+        }
+
+        /* ── Filter Chips ── */
+        .filter-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e5e2e1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .filter-chip:hover {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
+        }
+        .filter-chip.active {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.2);
+            color: #d0bcff;
+        }
+
+        /* ── Tech Tags ── */
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d0bcff;
+            backdrop-filter: blur(8px);
+        }
+
+        /* ── Icons ── */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ── Page Sections ── */
+        .page-section {
+            display: none;
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Nav active link ── */
+        .nav-link.active {
+            color: #d0bcff;
+            font-weight: 700;
+            border-bottom: 2px solid #d0bcff;
+            padding-bottom: 4px;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #d0bcff;
+        }
+
+        /* ── Misc ── */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .dir-ltr {
+            direction: ltr;
+        }
+        .rtl {
+            direction: rtl;
+        }
+        .transition-transform {
+            transition-property: transform;
+        }
+
+        /* Form feedback */
+        .form-success {
+            display: none;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        .form-success.show {
+            display: block;
+        }
+        .form-error {
+            display: none;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        .form-error.show {
+            display: block;
+        }
+    </style>
 </head>
-<body>
 
-<div class="aurora"><span></span><span></span><span></span></div>
-<div class="grain"></div>
+<body class="antialiased min-h-screen flex flex-col relative bg-background font-body-md text-body-md text-on-background bg-grid">
 
-<div class="topbar">
-  <span class="status"><span class="dot"></span><span data-i18n="status">سیستم آنلاین</span><span class="clock" id="clock"></span></span>
-  <div class="lang-switch">
-    <button data-lang="fa" class="active">FA</button>
-    <button data-lang="en">EN</button>
-  </div>
-  <span data-i18n="opsTerminal">R.I.T.M // پایانه عملیات</span>
-</div>
+    <!-- ===== AMBIENT BACKGROUND ===== -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-secondary"></div>
 
-<header>
-  <div class="logo-ring"><img src="assets/logo.png" alt="RITM" width="66" height="66" fetchpriority="high"></div>
-  <h1 class="brand">R.I.T.M</h1>
-  <div class="tagline" data-i18n="tagline">خدمات فریلنس // ادیت و طراحی وب</div>
-  <p class="hero-desc" data-i18n="heroDesc">
-    خدمات ادیت ویدئو و برنامه‌نویسی وب با کیفیت بالا، پشتیبانی کامل و تحویل سریع.
-    یکی از گزینه‌های زیر رو انتخاب کن و فرم پایین صفحه رو پر کن.
-  </p>
-  <div class="channel-btns">
-    <a class="tg-btn" href="https://t.me/RITM_Freelancer" target="_blank" rel="noopener" data-i18n="tgBtn">
-      عضویت در کانال تلگرام ↗
-    </a>
-    <a class="bale-btn" href="https://ble.ir/ritm_freelancer" target="_blank" rel="noopener" data-i18n="baleBtn">
-      عضویت در کانال بله ↗
-    </a>
-  </div>
-</header>
-
-<div class="wrap">
-
-  <section class="section reveal">
-    <div class="section-head"><span class="idx">01</span><h2 data-i18n="sec1">خدمات ادیت ویدئو</h2></div>
-    <div class="cards" id="video-cards">
-      <div class="card" data-service="ادیت با Adobe Premiere Pro">
-        <span class="select-mark"></span>
-        <div class="icon-badge i-premiere">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="15" height="12" rx="2"></rect><path d="M17 10l5-3v10l-5-3"></path></svg>
+    <!-- ===== TOP NAVIGATION (Desktop) ===== -->
+    <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full bg-white/5 dark:bg-white/5 backdrop-blur-xl border border-white/10 dark:border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 py-3 z-50 rtl hidden md:flex">
+        <div class="font-headline-sm text-headline-sm font-bold text-primary tracking-tighter cursor-pointer" onclick="navigateTo('home')">
+            RITM
         </div>
-        <div class="tag" data-i18n="card1Tag">پریمیر پرو</div>
-        <h3 data-i18n="card1Title">ادیت با Adobe Premiere Pro</h3>
-        <p class="desc" data-i18n="card1Desc">ادیت حرفه‌ای روی سیستم با نرم‌افزار پریمیر، کیفیت و دقت بالا.</p>
-        <div class="price"><span data-i18n="price1">۶۰,۰۰۰</span><small data-i18n="price1u">تومان</small></div>
-      </div>
-      <div class="card" data-service="ادیت با گوشی موبایل">
-        <span class="select-mark"></span>
-        <div class="icon-badge i-mobile">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"></rect><path d="M11 18h2"></path><path d="M9.5 6.5l2 2 3-3"></path></svg>
+        <nav class="flex gap-6 items-center">
+            <span class="nav-link active text-primary font-bold border-b-2 border-primary pb-1" data-page="home" onclick="navigateTo('home')">خانه</span>
+            <span class="nav-link text-on-surface/70" data-page="portfolio" onclick="navigateTo('portfolio')">پورتفولیو</span>
+            <span class="nav-link text-on-surface/70" data-page="services" onclick="navigateTo('services')">خدمات</span>
+            <span class="nav-link text-on-surface/70" data-page="contact" onclick="navigateTo('contact')">تماس</span>
+        </nav>
+        <a class="btn-primary px-6 py-2 rounded-full font-body-md text-body-md hover:scale-105 active:scale-95 transition-transform inline-flex items-center justify-center" href="#" onclick="navigateTo('contact'); return false;">
+            شروع پروژه
+        </a>
+    </header>
+
+    <!-- ===== MOBILE BOTTOM NAV ===== -->
+    <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex justify-around items-center py-3 z-50">
+        <span class="flex flex-col items-center text-primary gap-0.5 nav-link active" data-page="home" onclick="navigateTo('home')">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL'1;">home</span>
+            <span class="text-[10px] font-bold">خانه</span>
+        </span>
+        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="portfolio" onclick="navigateTo('portfolio')">
+            <span class="material-symbols-outlined text-2xl">work</span>
+            <span class="text-[10px]">پورتفولیو</span>
+        </span>
+        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="services" onclick="navigateTo('services')">
+            <span class="material-symbols-outlined text-2xl">design_services</span>
+            <span class="text-[10px]">خدمات</span>
+        </span>
+        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="contact" onclick="navigateTo('contact')">
+            <span class="material-symbols-outlined text-2xl">contact_support</span>
+            <span class="text-[10px]">تماس</span>
+        </span>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-32 pt-20 md:pt-28 flex-grow">
+
+        <!-- ─── HOME ─── -->
+        <section id="page-home" class="page-section active">
+            <!-- Hero -->
+            <div class="min-h-[80vh] flex flex-col justify-center items-center text-center pt-8 md:pt-12 relative">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel mb-8 border-primary/30">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="font-code-label text-code-label text-primary">آژانس خلاقیت دیجیتال</span>
+                </div>
+                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 max-w-4xl leading-tight">
+                    ریتم – <span class="text-primary text-glow">تدوین خلاقانه</span> و توسعه وب
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                    ما مرزهای بین هنر دیجیتال و مهندسی نرم‌افزار را می‌شکنیم. با ریتم، داستان برند شما با بالاترین استانداردهای بصری و تکنیکال روایت می‌شود.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 items-center">
+                    <a class="btn-primary px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg inline-flex items-center gap-2 justify-center" href="#" onclick="navigateTo('contact'); return false;">
+                        شروع پروژه
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    </a>
+                    <button class="glass-panel px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300" onclick="navigateTo('portfolio')">
+                        مشاهده پورتفولیو
+                    </button>
+                </div>
+            </div>
+
+            <!-- Features / Services Preview -->
+            <div class="py-24" id="services-preview">
+                <div class="mb-12 flex flex-col gap-2">
+                    <h2 class="font-headline-md text-headline-md text-on-surface">خدمات تخصصی</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">ترکیب هنر، حرکت و کد برای خلق تجربه‌های بی‌نظیر.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <!-- Card: Video Editing -->
+                    <div class="md:col-span-8 glass-card rounded-3xl p-8 relative overflow-hidden group">
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtDqNQTpfwH_fsFN0Q1mt4UZ22ngJSyKFNB9vuFpxrxHbfUhfiHphWfkUJ_Pcg33zwOJt5Fgl4UDJ98HKWR_PVtZ0JoaV-d54PSBji9gUf6jZFVcirfqwqsMzebGMgnKzA5dAD9rpUYQ7uTU_L8kbxu6f8uo3BiSPuR3UscwE9MkP1trEdv0urt-9jyspx5gcWwy7GxOluFeIghT4XpL4lrv0MnRCSi6yEAMeonPBK33v7bsdqI6FPAA');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
+                            </div>
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">تدوین و پست‌پروداکشن</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant w-3/4">ویرایش حرفه‌ای ویدیو، اصلاح رنگ با استانداردهای سینمایی.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: Web Dev -->
+                    <div class="md:col-span-4 glass-card rounded-3xl p-8 relative overflow-hidden group">
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPu3RIL4W_KxiBywVU1To-6VmCKzwpM6vuKMdpMQcxXIzMLxkmIFNEaPjJIjhuNul-yzrdULhDS9JwZneq6Ko6ng7Kt22AmezA-Hw8VjWGT87bocieQ9tInB6rGbQkvJpwQK7jU1u6Ybrj8onqcfbdW70UpkI7PZcAf32mgydd8PDvHNDSbPCR3QE4xwAETNUyqm5fBPrbdp7lUbaBK3sT5d-He-Ez_97h4iQhwSBV11hT7iScQjx_4w');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">code</span>
+                            </div>
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">توسعه وب</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">سایت‌ها و اپلیکیشن‌های پیشرفته با عملکرد بالا.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: Motion Graphics -->
+                    <div class="md:col-span-4 glass-card rounded-3xl p-8 relative overflow-hidden group">
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDit8zOo4-g3zKLBcCgzT5CQLuFNGusR2bmrCUCR3XfjXLTAEgpxv8vOoW-NpjMM9imfWchD7YtT9NJN5Gww7WUdOelOwuzQIY3VzNuG0qby9b5f5QpFZNPM9vgEtuChxTgv3hh-m9iErDSuffHWNQJZyQmSOYXFfvGA82xaoKs6J5MeDR0Prkdtffumo3WtOoO8Odn_2tjOJO94Abca7jwG76uHgwAabyPZy2YpuSWCZWI6tz-jAxKaQ');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">animation</span>
+                            </div>
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">موشن گرافیک</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">جلوه‌های بصری پویا و انیمیشن‌های سفارشی.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: UI/UX -->
+                    <div class="md:col-span-8 glass-card rounded-3xl p-8 relative overflow-hidden group">
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">palette</span>
+                            </div>
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">طراحی رابط کاربری</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant w-3/4">تجربه کاربری بی‌نقص و طراحی بصری جذاب.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="py-16">
+                <div class="glass-panel rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                    <div class="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-50"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <h2 class="font-headline-md text-headline-md text-on-surface mb-6">آماده خلق یک اثر ماندگار هستید؟</h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-10">
+                            تیم متخصص ما آماده است تا ایده‌های شما را به واقعیت تبدیل کند. همین حالا برای مشاوره رایگان با ما تماس بگیرید.
+                        </p>
+                        <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block text-center" href="#" onclick="navigateTo('contact'); return false;">
+                            درخواست مشاوره رایگان
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PORTFOLIO ─── -->
+        <section id="page-portfolio" class="page-section">
+            <div class="mb-16 flex flex-col gap-6 text-center md:text-right">
+                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">نمونه کارها</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0">
+                    مجموعه‌ای از پروژه‌های برگزیده ما در زمینه‌های توسعه وب، طراحی رابط کاربری و تولید محتوای بصری. هر پروژه داستانی از خلاقیت و تکنولوژی است.
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div class="mb-12 flex flex-wrap gap-4 justify-center md:justify-start">
+                <button class="filter-chip active px-6 py-2 rounded-full font-code-label text-code-label" data-filter="all">همه پروژه‌ها</button>
+                <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="web">توسعه وب</button>
+                <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="motion">موشن دیزاین</button>
+                <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="uiux">رابط کاربری</button>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                <!-- Card 1 -->
+                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="web">
+                    <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPu3RIL4W_KxiBywVU1To-6VmCKzwpM6vuKMdpMQcxXIzMLxkmIFNEaPjJIjhuNul-yzrdULhDS9JwZneq6Ko6ng7Kt22AmezA-Hw8VjWGT87bocieQ9tInB6rGbQkvJpwQK7jU1u6Ybrj8onqcfbdW70UpkI7PZcAf32mgydd8PDvHNDSbPCR3QE4xwAETNUyqm5fBPrbdp7lUbaBK3sT5d-He-Ez_97h4iQhwSBV11hT7iScQjx_4w');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-3 right-3 flex gap-2">
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">React</span>
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">WebGL</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 p-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">پلتفرم تحلیل داده</h3>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">داشبورد پیشرفته با استفاده از گرافیک‌های سه‌بعدی و پردازش داده در لحظه.</p>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="motion">
+                    <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDit8zOo4-g3zKLBcCgzT5CQLuFNGusR2bmrCUCR3XfjXLTAEgpxv8vOoW-NpjMM9imfWchD7YtT9NJN5Gww7WUdOelOwuzQIY3VzNuG0qby9b5f5QpFZNPM9vgEtuChxTgv3hh-m9iErDSuffHWNQJZyQmSOYXFfvGA82xaoKs6J5MeDR0Prkdtffumo3WtOoO8Odn_2tjOJO94Abca7jwG76uHgwAabyPZy2YpuSWCZWI6tz-jAxKaQ');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-md border border-primary/50 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white" style="font-variation-settings:'FILL'1;">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 right-3 flex gap-2">
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Motion</span>
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">VFX</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 p-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">موشن گرافیک تبلیغاتی</h3>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی موشن گرافیک و جلوه‌های ویژه بصری برای کمپین معرفی محصول جدید.</p>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="uiux">
+                    <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-3 right-3 flex gap-2">
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">UI/UX</span>
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Mobile</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 p-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">اپلیکیشن فروشگاهی لوکس</h3>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی تجربه کاربری و رابط بصری برای برند پوشاک با رویکرد مینیمال و تاریک.</p>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="web">
+                    <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtDqNQTpfwH_fsFN0Q1mt4UZ22ngJSyKFNB9vuFpxrxHbfUhfiHphWfkUJ_Pcg33zwOJt5Fgl4UDJ98HKWR_PVtZ0JoaV-d54PSBji9gUf6jZFVcirfqwqsMzebGMgnKzA5dAD9rpUYQ7uTU_L8kbxu6f8uo3BiSPuR3UscwE9MkP1trEdv0urt-9jyspx5gcWwy7GxOluFeIghT4XpL4lrv0MnRCSi6yEAMeonPBK33v7bsdqI6FPAA');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-3 right-3 flex gap-2">
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Next.js</span>
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 p-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">سایت شرکتی مدرن</h3>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی و پیاده‌سازی وب‌سایت شرکتی با انیمیشن‌های روان و بهینه‌سازی سئو.</p>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="motion">
+                    <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDit8zOo4-g3zKLBcCgzT5CQLuFNGusR2bmrCUCR3XfjXLTAEgpxv8vOoW-NpjMM9imfWchD7YtT9NJN5Gww7WUdOelOwuzQIY3VzNuG0qby9b5f5QpFZNPM9vgEtuChxTgv3hh-m9iErDSuffHWNQJZyQmSOYXFfvGA82xaoKs6J5MeDR0Prkdtffumo3WtOoO8Odn_2tjOJO94Abca7jwG76uHgwAabyPZy2YpuSWCZWI6tz-jAxKaQ');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-3 right-3 flex gap-2">
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">After Effects</span>
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Cinema 4D</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 p-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">تیزر معرفی برند</h3>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">تیزر ۶۰ ثانیه‌ای با جلوه‌های سه‌بعدی و موشن گرافیک پیشرفته برای برند لوکس.</p>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="uiux">
+                    <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-3 right-3 flex gap-2">
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Figma</span>
+                            <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Prototype</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 p-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">داشبورد مدیریت محتوا</h3>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی رابط کاربری برای سیستم مدیریت محتوای اختصاصی با رویکرد داده‌محور.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="mt-16 text-center">
+                <button class="glass-panel px-8 py-3 rounded-full font-body-md text-body-md text-on-surface hover:border-primary hover:text-primary transition-all duration-300 inline-flex items-center gap-2" onclick="navigateTo('contact')">
+                    درخواست پروژه مشابه
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ─── SERVICES ─── -->
+        <section id="page-services" class="page-section">
+            <div class="mb-16 flex flex-col gap-6 text-center md:text-right">
+                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">خدمات ما</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0">
+                    ما با ترکیب هنر دیجیتال و مهندسی نرم‌افزار، راه‌حل‌های خلاقانه و کاربردی برای برند شما ارائه می‌دهیم.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">تدوین و پست‌پروداکشن</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">ویرایش حرفه‌ای ویدیو، اصلاح رنگ با استانداردهای سینمایی، جلوه‌های ویژه و میکس و مسترینگ صدا.</p>
+                    <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> تدوین فیلم و مستند</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> اصلاح رنگ حرفه‌ای (Color Grading)</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> جلوه‌های ویژه (VFX)</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">code</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">توسعه وب</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">طراحی و پیاده‌سازی وب‌سایت‌های پیشرفته، اپلیکیشن‌های تک‌صفحه‌ای و سیستم‌های مدیریت محتوا.</p>
+                    <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> React / Next.js</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> وب‌سایت‌های شرکتی و فروشگاهی</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> بهینه‌سازی سئو و عملکرد</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">animation</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">موشن گرافیک</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">طراحی انیمیشن‌های سفارشی، تیزرهای تبلیغاتی، اینترو و اوتـرو، و جلوه‌های بصری پویا.</p>
+                    <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> موشن گرافیک ۲D و ۳D</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> تیزر و تریلر تبلیغاتی</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> انیمیشن لوگو و اینفوگرافیک</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">palette</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">طراحی رابط کاربری</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">طراحی تجربه کاربری (UX) و رابط بصری (UI) برای وب‌سایت‌ها، اپلیکیشن‌های موبایل و نرم‌افزارهای دسکتاپ.</p>
+                    <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> طراحی UX/UI با Figma</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> پروتوتایپ تعاملی</li>
+                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> طراحی سیستم‌های طراحی (Design System)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block" href="#" onclick="navigateTo('contact'); return false;">
+                    دریافت مشاوره رایگان
+                </a>
+            </div>
+        </section>
+
+        <!-- ─── CONTACT ─── -->
+        <section id="page-contact" class="page-section">
+            <div class="text-center mb-16 mt-4">
+                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4">آغاز <span class="text-primary">همکاری</span></h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">ایده‌های خود را با ما در میان بگذارید تا با بالاترین کیفیت و در کمترین زمان آنها را به واقعیت تبدیل کنیم.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <!-- Contact Info -->
+                <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1">
+                    <div class="glass-panel rounded-xl p-6 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-1 h-full bg-primary/50"></div>
+                        <h3 class="font-headline-md text-headline-md text-on-background mb-6">اطلاعات تماس</h3>
+                        <div class="flex flex-col gap-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0 border border-secondary/20">
+                                    <span class="material-symbols-outlined">mail</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">ایمیل ارتباطی</h4>
+                                    <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left">Ritm_FreeLancer@Gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20">
+                                    <span class="material-symbols-outlined">call</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">تلفن تماس</h4>
+                                    <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left">+98 9939189217</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">آدرس</h4>
+                                    <p class="font-body-md text-body-md text-on-surface-variant">تهران، ایران</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="lg:col-span-8 order-1 lg:order-2">
+                    <div class="glass-panel rounded-xl p-8 shadow-2xl relative">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+                        <!-- Success & Error Messages -->
+                        <div id="form-success" class="form-success mb-4">
+                            <span class="material-symbols-outlined align-middle ml-2">check_circle</span>
+                            درخواست شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.
+                        </div>
+                        <div id="form-error" class="form-error mb-4">
+                            <span class="material-symbols-outlined align-middle ml-2">error</span>
+                            خطا در ارسال فرم. لطفاً دوباره تلاش کنید.
+                        </div>
+
+                        <form class="relative z-10 flex flex-col gap-6" id="contact-form" action="https://formspree.io/f/mjgqpveq" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="flex flex-col gap-2 relative group">
+                                    <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="name">نام و نام خانوادگی</label>
+                                    <input class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all placeholder-white/20" id="name" name="name" placeholder="مثال: علی رضایی" type="text" required>
+                                </div>
+                                <div class="flex flex-col gap-2 relative group">
+                                    <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="contact">ایمیل یا شماره تماس</label>
+                                    <input class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all placeholder-white/20 dir-ltr text-left" id="contact" name="contact" placeholder="0912... یا email@example.com" type="text" required>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-3">
+                                <label class="font-body-md text-body-md text-on-surface-variant">نوع پروژه</label>
+                                <div class="flex flex-wrap gap-3">
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="project_type" type="radio" value="video">
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">تدوین ویدیو</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="project_type" type="radio" value="motion" checked>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">موشن گرافیک</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="project_type" type="radio" value="web">
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">توسعه وب</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="project_type" type="radio" value="uiux">
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">طراحی رابط کاربری</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="project_type" type="radio" value="other">
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">سایر موارد</div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-2 mt-2 relative">
+                                <label class="font-body-md text-body-md text-on-surface-variant" for="budget">بودجه تقریبی (اختیاری)</label>
+                                <select class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all appearance-none cursor-pointer" id="budget" name="budget">
+                                    <option class="bg-surface" disabled selected value="">انتخاب کنید...</option>
+                                    <option class="bg-surface" value="کمتر از ۱۰ میلیون تومان">کمتر از ۱۰ میلیون تومان</option>
+                                    <option class="bg-surface" value="۱۰ تا ۵۰ میلیون تومان">۱۰ تا ۵۰ میلیون تومان</option>
+                                    <option class="bg-surface" value="بیشتر از ۵۰ میلیون تومان">بیشتر از ۵۰ میلیون تومان</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-col gap-2 relative group mt-2">
+                                <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="message">توضیحات پروژه</label>
+                                <textarea class="w-full bg-black/30 border border-white/10 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-md transition-all placeholder-white/20 resize-y" id="message" name="message" placeholder="لطفاً جزئیات پروژه خود را اینجا بنویسید..." rows="5" required></textarea>
+                            </div>
+
+                            <!-- Formspree hidden field -->
+                            <input type="hidden" name="_subject" value="درخواست جدید از ریتم">
+
+                            <div class="mt-4 flex justify-end">
+                                <button class="btn-primary px-8 py-3 rounded-md font-headline-sm text-headline-sm flex items-center gap-2 active:scale-95" type="submit" id="submit-btn">
+                                    ارسال درخواست
+                                    <span class="material-symbols-outlined text-[20px]">send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="w-full border-t border-white/5 bg-surface dark:bg-surface mt-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-6 gap-4 max-w-container-max mx-auto rtl">
+            <div class="font-headline-sm text-headline-sm font-bold text-primary">RITM</div>
+            <div class="flex gap-6">
+                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity cursor-pointer">تلگرام</span>
+                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity cursor-pointer">بله</span>
+                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity cursor-pointer">اینستاگرام</span>
+            </div>
+            <div class="font-body-md text-body-md text-on-surface-variant text-sm">
+                © ۲۰۲۴ ریتم. تمامی حقوق محفوظ است.
+            </div>
         </div>
-        <div class="tag" data-i18n="card2Tag">ادیت موبایل</div>
-        <h3 data-i18n="card2Title">ادیت با گوشی موبایل</h3>
-        <p class="desc" data-i18n="card2Desc">ادیت سریع و آماده برای انتشار، مناسب کلیپ‌های شبکه‌های اجتماعی.</p>
-        <div class="price"><span data-i18n="price2">۱۰۰,۰۰۰</span><small data-i18n="price2u">تومان</small></div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="section reveal">
-    <div class="section-head"><span class="idx">02</span><h2 data-i18n="sec2">خدمات برنامه‌نویسی HTML</h2></div>
-    <div class="cards" id="dev-cards">
-      <div class="card" data-service="طراحی تک‌صفحه HTML + آنلاین‌سازی">
-        <span class="select-mark"></span>
-        <div class="icon-badge i-single">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"></polyline><polyline points="16 6 21 12 16 18"></polyline></svg>
-        </div>
-        <div class="tag" data-i18n="card3Tag">تک‌صفحه‌ای</div>
-        <h3 data-i18n="card3Title">طراحی تک‌صفحه HTML</h3>
-        <p class="desc" data-i18n="card3Desc">طراحی یک صفحه HTML اختصاصی به همراه آنلاین‌سازی کامل پروژه.</p>
-        <div class="price"><span data-i18n="price3">۲۵۰,۰۰۰</span><small data-i18n="price3u">تومان</small></div>
-      </div>
-      <div class="card" data-service="طراحی پروژه کامل HTML+CSS+JS + آنلاین‌سازی">
-        <span class="select-mark"></span>
-        <div class="icon-badge i-full">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-        </div>
-        <div class="tag" data-i18n="card4Tag">پروژه کامل</div>
-        <h3 data-i18n="card4Title">پروژه کامل HTML + CSS + JS</h3>
-        <p class="desc" data-i18n="card4Desc">طراحی کامل پروژه با جاوااسکریپت و استایل اختصاصی، به همراه آنلاین‌سازی.</p>
-        <div class="price"><span data-i18n="price4">۴۰۰,۰۰۰</span><small data-i18n="price4u">تومان</small></div>
-      </div>
-    </div>
-    <div class="note" data-i18n="note">
-      ⏳ مدت زمان انجام هر پروژه با توجه به حجم، پیچیدگی و جزئیات سفارش متفاوت است و پس از بررسی درخواست، زمان دقیق تحویل اعلام می‌شود.
-    </div>
-  </section>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ── Navigation ──
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
 
-  <section class="section reveal">
-    <div class="section-head"><span class="idx">03</span><h2 data-i18n="sec3">ارسال ویدیوی اختصاصی</h2></div>
-    <div class="video-box">
-      <div class="icon-badge i-send">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-      </div>
-      <p data-i18n="videoDesc">اگر ویدیوی خاصی دارید که می‌خواید توسط ما ادیت بشه، می‌تونید مستقیم اون رو برای ما ارسال کنید.</p>
-      <div class="video-actions">
-        <button type="button" class="video-btn" id="videoBtnTg">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-          <span data-i18n="videoBtnTg">ارسال به تلگرام</span>
-        </button>
-        <button type="button" class="video-btn video-btn-bale" id="videoBtnBale">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-          <span data-i18n="videoBtnBale">ارسال به بله</span>
-        </button>
-      </div>
+            // Show target
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.classList.add('active');
 
-      <div class="glass-bar" id="glassBarTg">
-        <div class="info">
-          <div class="label" data-i18n="videoLabelTg">ارسال به تلگرام</div>
-          <div class="handle">@IamRITM</div>
-        </div>
-        <button type="button" class="copy-btn" id="copyHandleTg" data-i18n="copyBtn">کپی</button>
-      </div>
+            // Update nav links (desktop)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                link.classList.add('text-on-surface/70');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active', 'text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                    link.classList.remove('text-on-surface/70');
+                }
+            });
 
-      <div class="glass-bar" id="glassBarBale">
-        <div class="info">
-          <div class="label" data-i18n="videoLabelBale">ارسال به بله</div>
-          <div class="handle">@TheRITM2</div>
-        </div>
-        <button type="button" class="copy-btn" id="copyHandleBale" data-i18n="copyBtn">کپی</button>
-      </div>
-    </div>
-  </section>
+            // Update mobile nav icons
+            document.querySelectorAll('.md\\:hidden .nav-link').forEach(link => {
+                link.classList.remove('text-primary');
+                link.classList.add('text-on-surface-variant');
+                const icon = link.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.fontVariationSettings = "'FILL' 0";
+                }
+                if (link.dataset.page === pageId) {
+                    link.classList.add('text-primary');
+                    link.classList.remove('text-on-surface-variant');
+                    if (icon) {
+                        icon.style.fontVariationSettings = "'FILL' 1";
+                    }
+                }
+            });
 
-  <section class="section reveal" id="order">
-    <div class="section-head"><span class="idx">04</span><h2 data-i18n="sec4">ثبت سفارش</h2></div>
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    <form class="terminal" id="orderForm" novalidate>
-      <div class="row2">
-        <div class="field">
-          <label data-i18n="labelName">نام شما <span class="req">*</span></label>
-          <input type="text" name="name" required data-i18n-placeholder="phName" placeholder="مثلاً: امیر">
-        </div>
-        <div class="field">
-          <label data-i18n="labelTelegram">آیدی تلگرام <span class="req">*</span></label>
-          <input type="text" name="telegram" required data-i18n-placeholder="phTelegram" placeholder="@username">
-        </div>
-      </div>
+        // ── Portfolio Filters ──
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
 
-      <div class="field">
-        <label data-i18n="labelService">نوع خدمت <span class="req">*</span></label>
-        <select name="service" id="serviceSelect" required>
-          <option value="" disabled selected data-i18n="phService">یکی از گزینه‌های بالا رو انتخاب کن</option>
-          <option value="ادیت با Adobe Premiere Pro" data-i18n="opt1">ادیت با Adobe Premiere Pro — ۶۰,۰۰۰ تومان</option>
-          <option value="ادیت با گوشی موبایل" data-i18n="opt2">ادیت با گوشی موبایل — ۱۰۰,۰۰۰ تومان</option>
-          <option value="طراحی تک‌صفحه HTML + آنلاین‌سازی" data-i18n="opt3">طراحی تک‌صفحه HTML — ۲۵۰,۰۰۰ تومان</option>
-          <option value="طراحی پروژه کامل HTML+CSS+JS + آنلاین‌سازی" data-i18n="opt4">پروژه کامل HTML+CSS+JS — ۴۰۰,۰۰۰ تومان</option>
-        </select>
-      </div>
+                const filter = this.dataset.filter;
+                document.querySelectorAll('#portfolio-grid .glass-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
 
-      <div class="field">
-        <label data-i18n="labelDetails">توضیحات پروژه <span class="req">*</span></label>
-        <textarea name="details" required data-i18n-placeholder="phDetails" placeholder="جزئیات، رفرنس، مهلت تحویل مورد نظر و..."></textarea>
-      </div>
+        // ── Form Submission to Formspree ──
+        const form = document.getElementById('contact-form');
+        const successEl = document.getElementById('form-success');
+        const errorEl = document.getElementById('form-error');
+        const submitBtn = document.getElementById('submit-btn');
 
-      <button type="submit" class="submit-btn" id="submitBtn" data-i18n="submitBtn">ارسال درخواست</button>
-      <div class="status-msg" id="statusMsg"></div>
-    </form>
-  </section>
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-</div>
+            // Hide previous messages
+            successEl.classList.remove('show');
+            errorEl.classList.remove('show');
 
-<footer>
-  © R.I.T.M — <a href="https://telegram.me/RITM_FreeLancer" target="_blank" rel="noopener" data-i18n="footer">TheRITMCLAN</a>
-</footer>
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'در حال ارسال...';
 
-<script src="js/script.min.js" defer></script>
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    successEl.classList.add('show');
+                    form.reset();
+                } else {
+                    errorEl.classList.add('show');
+                }
+            } catch (error) {
+                errorEl.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'ارسال درخواست <span class="material-symbols-outlined text-[20px]">send</span>';
+            }
+        });
+
+        // ── Set default active state on load ──
+        document.addEventListener('DOMContentLoaded', function() {
+            navigateTo('home');
+        });
+    </script>
+
 </body>
 </html>
