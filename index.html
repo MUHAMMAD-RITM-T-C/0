@@ -3,9 +3,34 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>RITM - آژانس خلاقیت دیجیتال</title>
+    <title>RITM — آژانس خلاقیت دیجیتال</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="RITM — آژانس خلاقیت دیجیتال">
+    <meta name="description" content="ریتم – تدوین خلاقانه، توسعه وب و اپلیکیشن موبایل. با ریتم، داستان برند شما با بالاترین استانداردهای بصری و تکنیکال روایت می‌شود.">
+    <meta name="keywords" content="تدوین, مونتاژ, پریمیر پرو, توسعه وب, اپلیکیشن موبایل, ریتم, آژانس دیجیتال">
+    <meta name="author" content="RITM">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ritm.ir/">
+    <meta property="og:title" content="RITM — آژانس خلاقیت دیجیتال">
+    <meta property="og:description" content="تدوین خلاقانه، توسعه وب و اپلیکیشن موبایل با بالاترین استانداردها.">
+    <meta property="og:image" content="assets/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ritm.ir/">
+    <meta property="twitter:title" content="RITM — آژانس خلاقیت دیجیتال">
+    <meta property="twitter:description" content="تدوین خلاقانه، توسعه وب و اپلیکیشن موبایل با بالاترین استانداردها.">
+    <meta property="twitter:image" content="assets/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -104,14 +129,19 @@
     </script>
 
     <style>
-        /* ── Reset & Base ── */
-        * {
+        /* ═══════════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         html {
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             background-color: #131313;
@@ -119,140 +149,282 @@
             font-family: 'Vazirmatn', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
+            cursor: default;
         }
 
-        /* ── Glassmorphism ── */
+        /* ═══════════════════════════════════════════════
+           REDUCED MOTION PREFERENCE
+           ═══════════════════════════════════════════════ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .ambient-glow,
+            .ambient-glow-secondary,
+            .ambient-glow-tertiary,
+            .shine-effect::after,
+            .typing-cursor::after {
+                animation: none !important;
+            }
+            .reveal,
+            .reveal-left,
+            .reveal-right,
+            .reveal-scale {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            [data-tilt] {
+                transform: none !important;
+            }
+            .tilt-card {
+                transition: none !important;
+            }
+            .btn-primary {
+                animation: none !important;
+                background-size: 100% 100% !important;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOCUS VISIBLE
+           ═══════════════════════════════════════════════ */
+        :focus-visible {
+            outline: 2px solid #8b5cf6;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           GLASSMORPHISM — Enhanced
+           ═══════════════════════════════════════════════ */
         .glass-panel {
             background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-top-color: rgba(255, 255, 255, 0.2);
             border-right-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
         .glass-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 40%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
             z-index: 10;
+            transition: width 0.6s ease;
         }
         .glass-card::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 1px;
-            height: 40%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            width: 2px;
+            height: 60%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
             z-index: 10;
+            transition: height 0.6s ease;
         }
+        .glass-card:hover::before { width: 100%; }
+        .glass-card:hover::after { height: 100%; }
         .glass-card:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
-            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-8px) scale(1.015);
+            box-shadow:
+                0 25px 50px rgba(139, 92, 246, 0.2),
+                0 0 40px rgba(139, 92, 246, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(139, 92, 246, 0.5);
         }
 
-        /* ── Glows ── */
+        /* ═══════════════════════════════════════════════
+           GLOWS & EFFECTS
+           ═══════════════════════════════════════════════ */
         .neon-glow-primary {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.2);
         }
         .text-glow {
-            text-shadow: 0 0 10px rgba(208, 188, 255, 0.5);
+            text-shadow: 0 0 15px rgba(208, 188, 255, 0.6), 0 0 40px rgba(208, 188, 255, 0.3);
         }
         .btn-primary {
-            background-color: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d3bd7 50%, #8b5cf6 100%);
+            background-size: 200% 200%;
             color: #ffffff;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: gradientShift 4s ease infinite;
+            position: relative;
+            overflow: hidden;
         }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            transition: left 0.6s ease;
+        }
+        .btn-primary:hover::before { left: 100%; }
         .btn-primary:hover {
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 80px rgba(139, 92, 246, 0.3);
             transform: scale(1.05);
+            animation-play-state: paused;
+            background-position: 100% 100%;
+        }
+        .btn-primary:active { transform: scale(0.95); }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* ── Ambient Orbs ── */
+        /* ═══════════════════════════════════════════════
+           AMBIENT ORBS — Animated
+           ═══════════════════════════════════════════════ */
         .ambient-glow {
+            position: fixed;
+            width: 70vw;
+            height: 70vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 70%);
+            top: -25vw;
+            right: -25vw;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(100px);
+            animation: floatOrb1 12s ease-in-out infinite alternate;
+        }
+        .ambient-glow-secondary {
             position: fixed;
             width: 60vw;
             height: 60vw;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0) 70%);
-            top: -20vw;
-            right: -20vw;
+            background: radial-gradient(circle, rgba(5, 102, 217, 0.15) 0%, rgba(5, 102, 217, 0) 70%);
+            bottom: -20vw;
+            left: -20vw;
             z-index: 0;
             pointer-events: none;
-            filter: blur(80px);
+            filter: blur(100px);
+            animation: floatOrb2 15s ease-in-out infinite alternate;
         }
-        .ambient-glow-secondary {
+        .ambient-glow-tertiary {
             position: fixed;
-            width: 50vw;
-            height: 50vw;
+            width: 40vw;
+            height: 40vw;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(5, 102, 217, 0.12) 0%, rgba(5, 102, 217, 0) 70%);
-            bottom: -10vw;
-            left: -10vw;
+            background: radial-gradient(circle, rgba(255, 184, 105, 0.08) 0%, rgba(255, 184, 105, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 0;
             pointer-events: none;
             filter: blur(80px);
+            animation: floatOrb3 18s ease-in-out infinite alternate;
+        }
+        @keyframes floatOrb1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-3vw, 4vh) scale(1.1); }
+            100% { transform: translate(2vw, -3vh) scale(0.95); }
+        }
+        @keyframes floatOrb2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(4vw, -3vh) scale(1.05); }
+            100% { transform: translate(-2vw, 5vh) scale(0.9); }
+        }
+        @keyframes floatOrb3 {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-45%, -55%) scale(1.2); }
+            100% { transform: translate(-55%, -45%) scale(0.9); }
         }
 
-        /* ── Filter Chips ── */
+        /* ═══════════════════════════════════════════════
+           FILTER CHIPS — Enhanced
+           ═══════════════════════════════════════════════ */
         .filter-chip {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #e5e2e1;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+        .filter-chip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         .filter-chip:hover {
             border-color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(139, 92, 246, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
         }
+        .filter-chip:hover::before { opacity: 1; }
         .filter-chip.active {
             border-color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.2);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.1) 100%);
             color: #d0bcff;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
-        /* ── Tech Tags ── */
+        /* ═══════════════════════════════════════════════
+           TECH TAGS — Enhanced
+           ═══════════════════════════════════════════════ */
         .tech-tag {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #d0bcff;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+        .tech-tag:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
         }
 
-        /* ── Icons ── */
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        /* ── Page Sections ── */
+        /* ═══════════════════════════════════════════════
+           PAGE SECTIONS — Smooth Transitions
+           ═══════════════════════════════════════════════ */
         .page-section {
             display: none;
-            animation: fadeUp 0.5s ease forwards;
+            animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .page-section.active {
             display: block;
         }
-
         @keyframes fadeUp {
             0% {
                 opacity: 0;
-                transform: translateY(24px);
+                transform: translateY(30px);
             }
             100% {
                 opacity: 1;
@@ -260,27 +432,136 @@
             }
         }
 
-        /* ── Nav active link ── */
-        .nav-link.active {
-            color: #d0bcff;
-            font-weight: 700;
-            border-bottom: 2px solid #d0bcff;
-            padding-bottom: 4px;
+        /* ═══════════════════════════════════════════════
+           SCROLL REVEAL — Intersection Observer
+           ═══════════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-delay: var(--reveal-delay, 0s);
+            will-change: transform, opacity;
         }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-delay: var(--reveal-delay, 0s);
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-delay: var(--reveal-delay, 0s);
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-delay: var(--reveal-delay, 0s);
+        }
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ═══════════════════════════════════════════════
+           3D TILT EFFECT (only for devices with hover)
+           ═══════════════════════════════════════════════ */
+        @media (hover: hover) and (pointer: fine) {
+            .tilt-card {
+                transform-style: preserve-3d;
+                will-change: transform;
+                transition: transform 0.3s ease;
+            }
+            .tilt-card-inner {
+                transform: translateZ(30px);
+                transition: transform 0.3s ease;
+            }
+        }
+        @media (hover: none), (pointer: coarse) {
+            .tilt-card {
+                transform: none !important;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           TYPING EFFECT
+           ═══════════════════════════════════════════════ */
+        .typing-cursor::after {
+            content: '|';
+            animation: blinkCursor 0.8s step-end infinite;
+            color: #d0bcff;
+        }
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           NAVIGATION — Enhanced
+           ═══════════════════════════════════════════════ */
         .nav-link {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #d0bcff);
+            transition: all 0.4s ease;
+            transform: translateX(50%);
+            border-radius: 2px;
         }
         .nav-link:hover {
             color: #d0bcff;
         }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #d0bcff;
+            font-weight: 700;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-        /* ── Misc ── */
+        /* ═══════════════════════════════════════════════
+           MISC UTILITIES
+           ═══════════════════════════════════════════════ */
         .bg-grid {
             background-size: 40px 40px;
             background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            position: relative;
+        }
+        .bg-grid::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(19, 19, 19, 0.7) 100%);
+            pointer-events: none;
+            z-index: 0;
         }
         .line-clamp-2 {
             display: -webkit-box;
@@ -288,15 +569,9 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .dir-ltr {
-            direction: ltr;
-        }
-        .rtl {
-            direction: rtl;
-        }
-        .transition-transform {
-            transition-property: transform;
-        }
+        .dir-ltr { direction: ltr; }
+        .rtl { direction: rtl; }
+        .transition-transform { transition-property: transform; }
 
         /* Form feedback */
         .form-success {
@@ -307,10 +582,9 @@
             padding: 1rem;
             border-radius: 0.75rem;
             text-align: center;
+            animation: fadeUp 0.5s ease forwards;
         }
-        .form-success.show {
-            display: block;
-        }
+        .form-success.show { display: block; }
         .form-error {
             display: none;
             background: rgba(239, 68, 68, 0.15);
@@ -319,50 +593,495 @@
             padding: 1rem;
             border-radius: 0.75rem;
             text-align: center;
+            animation: fadeUp 0.5s ease forwards;
         }
-        .form-error.show {
-            display: block;
+        .form-error.show { display: block; }
+
+        /* Input validation states */
+        .input-invalid {
+            border-color: #f87171 !important;
+            box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2) !important;
+        }
+        .input-valid {
+            border-color: #34d399 !important;
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2) !important;
+        }
+
+        /* ═══════════════════════════════════════════════
+           INPUT STYLES — Enhanced
+           ═══════════════════════════════════════════════ */
+        input, textarea, select {
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #8b5cf6 !important;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+            outline: none;
+        }
+        input::placeholder, textarea::placeholder {
+            transition: all 0.3s ease;
+        }
+        input:focus::placeholder, textarea:focus::placeholder {
+            opacity: 0.5;
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLLBAR
+           ═══════════════════════════════════════════════ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1c1b1b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #8b5cf6, #6d3bd7);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #9d7bf7, #7d4be7);
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(139, 92, 246, 0.4);
+            color: #ffffff;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SHAKE ANIMATION
+           ═══════════════════════════════════════════════ */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+            20%, 40%, 60%, 80% { transform: translateX(3px); }
+        }
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CARD SHINE EFFECT
+           ═══════════════════════════════════════════════ */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 40%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 60%
+            );
+            animation: shineSweep 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes shineSweep {
+            0% { transform: translateX(-100%) rotate(0deg); }
+            100% { transform: translateX(100%) rotate(0deg); }
+        }
+
+        /* ═══════════════════════════════════════════════
+           PRELOADER
+           ═══════════════════════════════════════════════ */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #131313;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid rgba(139, 92, 246, 0.2);
+            border-top-color: #8b5cf6;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .preloader-logo {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: url('assets/logo.png') center/contain no-repeat;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL PROGRESS BAR
+           ═══════════════════════════════════════════════ */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 3px;
+            background: transparent;
+            z-index: 1000;
+        }
+        #scroll-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8b5cf6, #d0bcff);
+            border-radius: 0 2px 2px 0;
+            transition: width 0.1s linear;
+        }
+
+        /* ═══════════════════════════════════════════════
+           BACK TO TOP BUTTON
+           ═══════════════════════════════════════════════ */
+        #back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #d0bcff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            backdrop-filter: blur(10px);
+            z-index: 500;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* ═══════════════════════════════════════════════
+           FLOATING CONTACT BUTTON (Email / Phone)
+           ═══════════════════════════════════════════════ */
+        #chat-float {
+            --pulse-color: rgba(139, 92, 246, 0.5);
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #6d3bd7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        #chat-float.email-mode {
+            --pulse-color: rgba(59, 130, 246, 0.5);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+        #chat-float.phone-mode {
+            --pulse-color: rgba(34, 197, 94, 0.5);
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+        #chat-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 var(--pulse-color); }
+            70% { box-shadow: 0 0 0 15px transparent; }
+            100% { box-shadow: 0 0 0 0 transparent; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           MODAL
+           ═══════════════════════════════════════════════ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #1c1b1b;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+
+        /* ═══════════════════════════════════════════════
+           FAQ ACCORDION
+           ═══════════════════════════════════════════════ */
+        .faq-item {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item.active {
+            border-color: rgba(139,92,246,0.4);
+            box-shadow: 0 0 20px rgba(139,92,246,0.1);
+        }
+        .faq-question {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: rgba(255,255,255,0.03);
+            transition: all 0.3s ease;
+        }
+        .faq-question:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 1rem 1.5rem;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ═══════════════════════════════════════════════
+           PARTICLES CANVAS
+           ═══════════════════════════════════════════════ */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ═══════════════════════════════════════════════
+           DARK/LIGHT MODE TOGGLE
+           ═══════════════════════════════════════════════ */
+        .theme-toggle {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #d0bcff;
+        }
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(20deg);
+        }
+
+        /* Light mode overrides */
+        html:not(.dark) body {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+        html:not(.dark) .glass-card,
+        html:not(.dark) .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0,0,0,0.1);
+            color: #1a1a1a;
+        }
+        html:not(.dark) .glass-card::before,
+        html:not(.dark) .glass-card::after {
+            background: linear-gradient(90deg, rgba(0,0,0,0.1), transparent);
+        }
+        html:not(.dark) .text-on-surface,
+        html:not(.dark) .text-on-background,
+        html:not(.dark) .text-on-surface-variant {
+            color: #1a1a1a;
+        }
+        html:not(.dark) .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        }
+        html:not(.dark) .bg-grid::before {
+            background: transparent;
+        }
+        html:not(.dark) .btn-primary {
+            color: #fff;
+        }
+
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            .ambient-glow { width: 100vw; height: 100vw; top: -40vw; right: -40vw; }
+            .ambient-glow-secondary { width: 80vw; height: 80vw; bottom: -30vw; left: -30vw; }
+            #back-to-top {
+                bottom: 80px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            #chat-float {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                left: 15px;
+            }
         }
     </style>
 </head>
 
 <body class="antialiased min-h-screen flex flex-col relative bg-background font-body-md text-body-md text-on-background bg-grid">
 
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-ring"></div>
+        <div class="preloader-logo"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top" aria-label="بازگشت به بالا">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </div>
+
+    <!-- Floating Contact Button (Email on Desktop, Phone on Mobile) -->
+    <div id="chat-float" aria-label="تماس">
+        <span id="chat-float-icon" class="material-symbols-outlined" style="font-size: 30px;">mail</span>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="بستن">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div id="modal-body">
+                <!-- Dynamic content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <!-- اصلاح: در دسکتاپ به پایین راست منتقل شد تا با دکمه ایمیل تداخل نکند -->
+    <div class="theme-toggle fixed top-4 left-4 z-[60] md:top-auto md:bottom-6 md:right-6 md:left-auto" id="theme-toggle" aria-label="تغییر حالت تاریک/روشن">
+        <span class="material-symbols-outlined">dark_mode</span>
+    </div>
+
     <!-- ===== AMBIENT BACKGROUND ===== -->
     <div class="ambient-glow"></div>
     <div class="ambient-glow-secondary"></div>
+    <div class="ambient-glow-tertiary"></div>
 
     <!-- ===== TOP NAVIGATION (Desktop) ===== -->
-    <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full bg-white/5 dark:bg-white/5 backdrop-blur-xl border border-white/10 dark:border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 py-3 z-50 rtl hidden md:flex">
-        <div class="font-headline-sm text-headline-sm font-bold text-primary tracking-tighter cursor-pointer" onclick="navigateTo('home')">
-            RITM
+    <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full bg-white/5 dark:bg-white/5 backdrop-blur-2xl border border-white/10 dark:border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 py-3 z-50 rtl hidden md:flex transition-all duration-500 hover:bg-white/10">
+        <div class="flex items-center gap-2 cursor-pointer select-none" onclick="navigateTo('home')">
+            <img src="assets/logo.png" alt="ریتم" class="w-10 h-10 rounded-full object-contain">
         </div>
-        <nav class="flex gap-6 items-center">
-            <span class="nav-link active text-primary font-bold border-b-2 border-primary pb-1" data-page="home" onclick="navigateTo('home')">خانه</span>
-            <span class="nav-link text-on-surface/70" data-page="portfolio" onclick="navigateTo('portfolio')">پورتفولیو</span>
-            <span class="nav-link text-on-surface/70" data-page="services" onclick="navigateTo('services')">خدمات</span>
-            <span class="nav-link text-on-surface/70" data-page="contact" onclick="navigateTo('contact')">تماس</span>
+        <nav class="flex gap-8 items-center" aria-label="ناوبری اصلی">
+            <span class="nav-link active text-primary font-bold" data-page="home" onclick="navigateTo('home')" role="link" tabindex="0">خانه</span>
+            <span class="nav-link text-on-surface/70" data-page="portfolio" onclick="navigateTo('portfolio')" role="link" tabindex="0">پورتفولیو</span>
+            <span class="nav-link text-on-surface/70" data-page="services" onclick="navigateTo('services')" role="link" tabindex="0">خدمات</span>
+            <span class="nav-link text-on-surface/70" data-page="contact" onclick="navigateTo('contact')" role="link" tabindex="0">تماس</span>
         </nav>
-        <a class="btn-primary px-6 py-2 rounded-full font-body-md text-body-md hover:scale-105 active:scale-95 transition-transform inline-flex items-center justify-center" href="#" onclick="navigateTo('contact'); return false;">
+        <a class="btn-primary px-7 py-2.5 rounded-full font-body-md text-body-md hover:scale-105 active:scale-95 transition-transform inline-flex items-center justify-center" href="#" onclick="navigateTo('contact'); return false;">
             شروع پروژه
         </a>
     </header>
 
     <!-- ===== MOBILE BOTTOM NAV ===== -->
-    <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex justify-around items-center py-3 z-50">
-        <span class="flex flex-col items-center text-primary gap-0.5 nav-link active" data-page="home" onclick="navigateTo('home')">
+    <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 flex justify-around items-center py-3 z-50 shadow-[0_20px_40px_rgba(0,0,0,0.4)]" aria-label="ناوبری موبایل">
+        <span class="flex flex-col items-center text-primary gap-0.5 nav-link active" data-page="home" onclick="navigateTo('home')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL'1;">home</span>
             <span class="text-[10px] font-bold">خانه</span>
         </span>
-        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="portfolio" onclick="navigateTo('portfolio')">
+        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="portfolio" onclick="navigateTo('portfolio')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl">work</span>
             <span class="text-[10px]">پورتفولیو</span>
         </span>
-        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="services" onclick="navigateTo('services')">
+        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="services" onclick="navigateTo('services')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl">design_services</span>
             <span class="text-[10px]">خدمات</span>
         </span>
-        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="contact" onclick="navigateTo('contact')">
+        <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="contact" onclick="navigateTo('contact')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl">contact_support</span>
             <span class="text-[10px]">تماس</span>
         </span>
@@ -373,24 +1092,25 @@
 
         <!-- ─── HOME ─── -->
         <section id="page-home" class="page-section active">
-            <!-- Hero -->
+            <!-- Hero with particles -->
             <div class="min-h-[80vh] flex flex-col justify-center items-center text-center pt-8 md:pt-12 relative">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel mb-8 border-primary/30">
+                <canvas id="particles-canvas"></canvas>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel mb-8 border-primary/30 reveal reveal-scale" style="--reveal-delay: 0.1s;">
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                     <span class="font-code-label text-code-label text-primary">آژانس خلاقیت دیجیتال</span>
                 </div>
-                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 max-w-4xl leading-tight">
-                    ریتم – <span class="text-primary text-glow">تدوین خلاقانه</span>، توسعه وب و اپلیکیشن موبایل
+                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 max-w-4xl leading-tight reveal" style="--reveal-delay: 0.2s;">
+                    ریتم – <span class="text-primary text-glow typing-cursor" id="typing-text">تدوین خلاقانه</span>
                 </h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 reveal" style="--reveal-delay: 0.35s;">
                     ما مرزهای بین هنر دیجیتال و مهندسی نرم‌افزار را می‌شکنیم. با ریتم، داستان برند شما با بالاترین استانداردهای بصری و تکنیکال روایت می‌شود.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 items-center">
+                <div class="flex flex-col sm:flex-row gap-4 items-center reveal" style="--reveal-delay: 0.5s;">
                     <a class="btn-primary px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg inline-flex items-center gap-2 justify-center" href="#" onclick="navigateTo('contact'); return false;">
                         شروع پروژه
                         <span class="material-symbols-outlined text-sm">arrow_back</span>
                     </a>
-                    <button class="glass-panel px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300" onclick="navigateTo('portfolio')">
+                    <button class="glass-panel px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300 hover:scale-105" onclick="navigateTo('portfolio')">
                         مشاهده پورتفولیو
                     </button>
                 </div>
@@ -398,46 +1118,46 @@
 
             <!-- Features / Services Preview -->
             <div class="py-24" id="services-preview">
-                <div class="mb-12 flex flex-col gap-2">
+                <div class="mb-12 flex flex-col gap-2 reveal">
                     <h2 class="font-headline-md text-headline-md text-on-surface">خدمات تخصصی</h2>
                     <p class="font-body-md text-body-md text-on-surface-variant">ترکیب هنر، حرکت و کد برای خلق تجربه‌های بی‌نظیر.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Card: Video Editing -->
-                    <div class="glass-card rounded-3xl p-8 relative overflow-hidden group">
-                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtDqNQTpfwH_fsFN0Q1mt4UZ22ngJSyKFNB9vuFpxrxHbfUhfiHphWfkUJ_Pcg33zwOJt5Fgl4UDJ98HKWR_PVtZ0JoaV-d54PSBji9gUf6jZFVcirfqwqsMzebGMgnKzA5dAD9rpUYQ7uTU_L8kbxu6f8uo3BiSPuR3UscwE9MkP1trEdv0urt-9jyspx5gcWwy7GxOluFeIghT4XpL4lrv0MnRCSi6yEAMeonPBK33v7bsdqI6FPAA');"></div>
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                    <div class="glass-card shine-effect tilt-card rounded-3xl p-8 relative overflow-hidden group reveal reveal-left" style="--reveal-delay: 0.15s;" data-tilt>
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtDqNQTpfwH_fsFN0Q1mt4UZ22ngJSyKFNB9vuFpxrxHbfUhfiHphWfkUJ_Pcg33zwOJt5Fgl4UDJ98HKWR_PVtZ0JoaV-d54PSBji9gUf6jZFVcirfqwqsMzebGMgnKzA5dAD9rpUYQ7uTU_L8kbxu6f8uo3BiSPuR3UscwE9MkP1trEdv0urt-9jyspx5gcWwy7GxOluFeIghT4XpL4lrv0MnRCSi6yEAMeonPBK33v7bsdqI6FPAA');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px] tilt-card-inner">
+                            <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6 transition-all duration-500 group-hover:scale-110 group-hover:bg-primary/20 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
                             </div>
                             <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">تدوین و پست‌پروداکشن</h3>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary">تدوین و پست‌پروداکشن</h3>
                                 <p class="font-body-md text-body-md text-on-surface-variant">ویرایش حرفه‌ای ویدیو با پریمیر پرو، اصلاح رنگ با استانداردهای سینمایی.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Card: Web Dev -->
-                    <div class="glass-card rounded-3xl p-8 relative overflow-hidden group">
-                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPu3RIL4W_KxiBywVU1To-6VmCKzwpM6vuKMdpMQcxXIzMLxkmIFNEaPjJIjhuNul-yzrdULhDS9JwZneq6Ko6ng7Kt22AmezA-Hw8VjWGT87bocieQ9tInB6rGbQkvJpwQK7jU1u6Ybrj8onqcfbdW70UpkI7PZcAf32mgydd8PDvHNDSbPCR3QE4xwAETNUyqm5fBPrbdp7lUbaBK3sT5d-He-Ez_97h4iQhwSBV11hT7iScQjx_4w');"></div>
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                    <div class="glass-card shine-effect tilt-card rounded-3xl p-8 relative overflow-hidden group reveal" style="--reveal-delay: 0.25s;" data-tilt>
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPu3RIL4W_KxiBywVU1To-6VmCKzwpM6vuKMdpMQcxXIzMLxkmIFNEaPjJIjhuNul-yzrdULhDS9JwZneq6Ko6ng7Kt22AmezA-Hw8VjWGT87bocieQ9tInB6rGbQkvJpwQK7jU1u6Ybrj8onqcfbdW70UpkI7PZcAf32mgydd8PDvHNDSbPCR3QE4xwAETNUyqm5fBPrbdp7lUbaBK3sT5d-He-Ez_97h4iQhwSBV11hT7iScQjx_4w');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px] tilt-card-inner">
+                            <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6 transition-all duration-500 group-hover:scale-110 group-hover:bg-primary/20 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">code</span>
                             </div>
                             <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">توسعه وب</h3>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary">توسعه وب</h3>
                                 <p class="font-body-md text-body-md text-on-surface-variant">ساخت کدهای سایت‌های پیشرفته با عملکرد بالا و طراحی واکنش‌گرا.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Card: Mobile App Dev -->
-                    <div class="glass-card rounded-3xl p-8 relative overflow-hidden group">
-                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
-                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px]">
-                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6">
+                    <div class="glass-card shine-effect tilt-card rounded-3xl p-8 relative overflow-hidden group reveal reveal-right" style="--reveal-delay: 0.35s;" data-tilt>
+                        <div class="absolute inset-0 opacity-20 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between min-h-[220px] tilt-card-inner">
+                            <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/10 text-primary mb-6 transition-all duration-500 group-hover:scale-110 group-hover:bg-primary/20 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">smartphone</span>
                             </div>
                             <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">اپلیکیشن موبایل</h3>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary">اپلیکیشن موبایل</h3>
                                 <p class="font-body-md text-body-md text-on-surface-variant">ساخت اپلیکیشن‌های موبایل پایه با تمرکز بر کارایی و تجربه کاربری.</p>
                             </div>
                         </div>
@@ -447,7 +1167,7 @@
 
             <!-- CTA -->
             <div class="py-16">
-                <div class="glass-panel rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                <div class="glass-panel rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] shine-effect reveal reveal-scale" style="--reveal-delay: 0.2s;">
                     <div class="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-50"></div>
                     <div class="relative z-10 flex flex-col items-center">
                         <h2 class="font-headline-md text-headline-md text-on-surface mb-6">آماده خلق یک اثر ماندگار هستید؟</h2>
@@ -464,31 +1184,37 @@
 
         <!-- ─── PORTFOLIO ─── -->
         <section id="page-portfolio" class="page-section">
-            <div class="mb-16 flex flex-col gap-6 text-center md:text-right">
+            <div class="mb-16 flex flex-col gap-6 text-center md:text-right reveal">
                 <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">نمونه کارها</h1>
                 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0">
                     مجموعه‌ای از پروژه‌های برگزیده ما در زمینه‌های تدوین ویدیو، توسعه وب و اپلیکیشن موبایل.
                 </p>
             </div>
 
-            <!-- Filters -->
-            <div class="mb-12 flex flex-wrap gap-4 justify-center md:justify-start">
-                <button class="filter-chip active px-6 py-2 rounded-full font-code-label text-code-label" data-filter="all">همه پروژه‌ها</button>
-                <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="video">تدوین ویدیو</button>
-                <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="web">توسعه وب</button>
-                <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="mobile">اپلیکیشن موبایل</button>
+            <!-- Search & Filters -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between reveal" style="--reveal-delay: 0.15s;">
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <button class="filter-chip active px-6 py-2 rounded-full font-code-label text-code-label" data-filter="all">همه پروژه‌ها</button>
+                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="video">تدوین ویدیو</button>
+                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="web">توسعه وب</button>
+                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="mobile">اپلیکیشن موبایل</button>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <input type="text" id="portfolio-search" placeholder="جستجو..." class="w-full bg-black/20 border border-white/10 rounded-full py-2 px-4 pl-10 text-on-surface placeholder-white/30 focus:border-primary transition-all">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface/50 text-sm">search</span>
+                </div>
             </div>
 
             <!-- Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
                 <!-- Card 1: Video Editing -->
-                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="video">
+                <article class="glass-card shine-effect tilt-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group reveal reveal-left" data-category="video" style="--reveal-delay: 0.1s;" data-tilt data-title="تیزر تبلیغاتی محصول" data-desc="تدوین و مونتاژ تیزر ۳۰ ثانیه‌ای با پریمیر پرو، شامل اصلاح رنگ و صداگذاری.">
                     <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDit8zOo4-g3zKLBcCgzT5CQLuFNGusR2bmrCUCR3XfjXLTAEgpxv8vOoW-NpjMM9imfWchD7YtT9NJN5Gww7WUdOelOwuzQIY3VzNuG0qby9b5f5QpFZNPM9vgEtuChxTgv3hh-m9iErDSuffHWNQJZyQmSOYXFfvGA82xaoKs6J5MeDR0Prkdtffumo3WtOoO8Odn_2tjOJO94Abca7jwG76uHgwAabyPZy2YpuSWCZWI6tz-jAxKaQ');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-md border border-primary/50 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-white" style="font-variation-settings:'FILL'1;">play_arrow</span>
+                            <div class="w-14 h-14 rounded-full bg-primary/20 backdrop-blur-md border border-primary/50 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                                <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings:'FILL'1;">play_arrow</span>
                             </div>
                         </div>
                         <div class="absolute top-3 right-3 flex gap-2">
@@ -496,17 +1222,17 @@
                             <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Color Grading</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 p-2">
+                    <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">تیزر تبلیغاتی محصول</h3>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">تدوین و مونتاژ تیزر ۳۰ ثانیه‌ای با پریمیر پرو، شامل اصلاح رنگ و صداگذاری.</p>
                     </div>
                 </article>
 
                 <!-- Card 2: Web Development -->
-                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="web">
+                <article class="glass-card shine-effect tilt-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group reveal" data-category="web" style="--reveal-delay: 0.2s;" data-tilt data-title="سایت شرکتی مدرن" data-desc="طراحی و کدنویسی وب‌سایت شرکتی با انیمیشن‌های روان و بهینه‌سازی سئو.">
                     <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPu3RIL4W_KxiBywVU1To-6VmCKzwpM6vuKMdpMQcxXIzMLxkmIFNEaPjJIjhuNul-yzrdULhDS9JwZneq6Ko6ng7Kt22AmezA-Hw8VjWGT87bocieQ9tInB6rGbQkvJpwQK7jU1u6Ybrj8onqcfbdW70UpkI7PZcAf32mgydd8PDvHNDSbPCR3QE4xwAETNUyqm5fBPrbdp7lUbaBK3sT5d-He-Ez_97h4iQhwSBV11hT7iScQjx_4w');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -515,17 +1241,17 @@
                             <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">JavaScript</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 p-2">
+                    <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">سایت شرکتی مدرن</h3>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی و کدنویسی وب‌سایت شرکتی با انیمیشن‌های روان و بهینه‌سازی سئو.</p>
                     </div>
                 </article>
 
                 <!-- Card 3: Mobile App -->
-                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="mobile">
+                <article class="glass-card shine-effect tilt-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group reveal reveal-right" data-category="mobile" style="--reveal-delay: 0.3s;" data-tilt data-title="اپلیکیشن مدیریت وظایف" data-desc="اپلیکیشن موبایل ساده برای مدیریت وظایف روزانه با قابلیت ثبت و پیگیری.">
                     <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -534,17 +1260,17 @@
                             <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Cross-platform</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 p-2">
+                    <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">اپلیکیشن مدیریت وظایف</h3>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">اپلیکیشن موبایل ساده برای مدیریت وظایف روزانه با قابلیت ثبت و پیگیری.</p>
                     </div>
                 </article>
 
                 <!-- Card 4: Video Editing -->
-                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="video">
+                <article class="glass-card shine-effect tilt-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group reveal reveal-left" data-category="video" style="--reveal-delay: 0.15s;" data-tilt data-title="موزیک ویدیو" data-desc="تدوین موزیک ویدیو با ریتم‌سازی دقیق و افکت‌های بصری جذاب.">
                     <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtDqNQTpfwH_fsFN0Q1mt4UZ22ngJSyKFNB9vuFpxrxHbfUhfiHphWfkUJ_Pcg33zwOJt5Fgl4UDJ98HKWR_PVtZ0JoaV-d54PSBji9gUf6jZFVcirfqwqsMzebGMgnKzA5dAD9rpUYQ7uTU_L8kbxu6f8uo3BiSPuR3UscwE9MkP1trEdv0urt-9jyspx5gcWwy7GxOluFeIghT4XpL4lrv0MnRCSi6yEAMeonPBK33v7bsdqI6FPAA');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -553,17 +1279,17 @@
                             <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">VFX</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 p-2">
+                    <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">موزیک ویدیو</h3>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">تدوین موزیک ویدیو با ریتم‌سازی دقیق و افکت‌های بصری جذاب.</p>
                     </div>
                 </article>
 
                 <!-- Card 5: Web Development -->
-                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="web">
+                <article class="glass-card shine-effect tilt-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group reveal" data-category="web" style="--reveal-delay: 0.25s;" data-tilt data-title="وب‌سایت رزومه" data-desc="طراحی و پیاده‌سازی وب‌سایت شخصی با تمرکز بر سادگی و سرعت بارگذاری.">
                     <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPu3RIL4W_KxiBywVU1To-6VmCKzwpM6vuKMdpMQcxXIzMLxkmIFNEaPjJIjhuNul-yzrdULhDS9JwZneq6Ko6ng7Kt22AmezA-Hw8VjWGT87bocieQ9tInB6rGbQkvJpwQK7jU1u6Ybrj8onqcfbdW70UpkI7PZcAf32mgydd8PDvHNDSbPCR3QE4xwAETNUyqm5fBPrbdp7lUbaBK3sT5d-He-Ez_97h4iQhwSBV11hT7iScQjx_4w');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -572,17 +1298,17 @@
                             <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Responsive</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 p-2">
+                    <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">وب‌سایت رزومه</h3>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی و پیاده‌سازی وب‌سایت شخصی با تمرکز بر سادگی و سرعت بارگذاری.</p>
                     </div>
                 </article>
 
                 <!-- Card 6: Mobile App -->
-                <article class="glass-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group" data-category="mobile">
+                <article class="glass-card shine-effect tilt-card rounded-xl p-4 flex flex-col gap-4 cursor-pointer group reveal reveal-right" data-category="mobile" style="--reveal-delay: 0.35s;" data-tilt data-title="اپلیکیشن یادداشت‌برداری" data-desc="اپلیکیشن موبایل سبک برای یادداشت‌برداری سریع با ذخیره‌سازی محلی.">
                     <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-high border border-white/5">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwX1V01iCQNXAxXpcSorR1Diq_DwUUIygXwcjLHAh84J02ZdVIw59kxDQCaWkRRrO2XwBnFVQBErCyk2JjTYjKLdq4JJ3aREp_g2R4t-p1gVnAdkkSzQnglj9zKLsbh-KzsOW3gZIzXZ4snVUEsnI9GBRKBxhEvD0_PzPnMSvW9lvAcNWYuVhEnKLO5D88owK2VzhrFH_ez6VTJT60i0O9B6zBye3MdZ8rWjtF0jtUn1YMV0CPx_Y1YA');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -591,18 +1317,18 @@
                             <span class="tech-tag px-3 py-1 rounded-full font-code-label text-[10px]">Offline</span>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 p-2">
+                    <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">اپلیکیشن یادداشت‌برداری</h3>
-                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors transform -rotate-45">arrow_forward</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">اپلیکیشن موبایل سبک برای یادداشت‌برداری سریع با ذخیره‌سازی محلی.</p>
                     </div>
                 </article>
             </div>
 
-            <div class="mt-16 text-center">
-                <button class="glass-panel px-8 py-3 rounded-full font-body-md text-body-md text-on-surface hover:border-primary hover:text-primary transition-all duration-300 inline-flex items-center gap-2" onclick="navigateTo('contact')">
+            <div class="mt-16 text-center reveal" style="--reveal-delay: 0.2s;">
+                <button class="glass-panel px-8 py-3 rounded-full font-body-md text-body-md text-on-surface hover:border-primary hover:text-primary transition-all duration-300 inline-flex items-center gap-2 hover:scale-105" onclick="navigateTo('contact')">
                     درخواست پروژه مشابه
                     <span class="material-symbols-outlined text-sm">arrow_back</span>
                 </button>
@@ -611,7 +1337,7 @@
 
         <!-- ─── SERVICES ─── -->
         <section id="page-services" class="page-section">
-            <div class="mb-16 flex flex-col gap-6 text-center md:text-right">
+            <div class="mb-16 flex flex-col gap-6 text-center md:text-right reveal">
                 <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">خدمات ما</h1>
                 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0">
                     ما با ترکیب هنر دیجیتال و مهندسی نرم‌افزار، راه‌حل‌های خلاقانه و کاربردی برای برند شما ارائه می‌دهیم.
@@ -620,49 +1346,92 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Service 1: Video Editing -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group">
-                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
+                <div class="glass-card shine-effect tilt-card rounded-2xl p-8 flex flex-col gap-4 group reveal reveal-left" style="--reveal-delay: 0.1s;" data-tilt>
+                    <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-all duration-500 group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
+                        <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
                     </div>
                     <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">تدوین و پست‌پروداکشن</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">ویرایش حرفه‌ای ویدیو با نرم‌افزار پریمیر پرو، اصلاح رنگ، صداگذاری و میکس.</p>
                     <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> تدوین فیلم، تیزر و مستند</li>
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> اصلاح رنگ حرفه‌ای (Color Grading)</li>
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> میکس و مسترینگ صدا</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> تدوین فیلم، تیزر و مستند</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> اصلاح رنگ حرفه‌ای (Color Grading)</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> میکس و مسترینگ صدا</li>
                     </ul>
                 </div>
 
                 <!-- Service 2: Web Development -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group">
-                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">code</span>
+                <div class="glass-card shine-effect tilt-card rounded-2xl p-8 flex flex-col gap-4 group reveal reveal-right" style="--reveal-delay: 0.2s;" data-tilt>
+                    <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-all duration-500 group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
+                        <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL'1;">code</span>
                     </div>
                     <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">توسعه وب</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">ساخت کدهای سایت‌های مدرن، واکنش‌گرا و بهینه‌شده با HTML، CSS و JavaScript.</p>
                     <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> وب‌سایت‌های شرکتی و شخصی</li>
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> طراحی واکنش‌گرا (Responsive)</li>
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> بهینه‌سازی سرعت و سئو</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> وب‌سایت‌های شرکتی و شخصی</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> طراحی واکنش‌گرا (Responsive)</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> بهینه‌سازی سرعت و سئو</li>
                     </ul>
                 </div>
 
                 <!-- Service 3: Mobile App Development -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col gap-4 group md:col-span-2">
-                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL'1;">smartphone</span>
+                <div class="glass-card shine-effect tilt-card rounded-2xl p-8 flex flex-col gap-4 group reveal" style="--reveal-delay: 0.3s;" data-tilt>
+                    <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-all duration-500 group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
+                        <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL'1;">smartphone</span>
                     </div>
                     <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">اپلیکیشن موبایل (پایه)</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">ساخت اپلیکیشن‌های موبایل ساده و کاربردی با تمرکز بر نیازهای پایه‌ای کاربران.</p>
                     <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> اپلیکیشن‌های مدیریتی و یادداشت</li>
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> رابط کاربری ساده و روان</li>
-                        <li class="flex items-center gap-2"><span class="text-primary">✓</span> ذخیره‌سازی محلی و آفلاین</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> اپلیکیشن‌های مدیریتی و یادداشت</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> رابط کاربری ساده و روان</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> ذخیره‌سازی محلی و آفلاین</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="mt-16 text-center">
+            <!-- FAQ Section -->
+            <div class="mt-20 mb-16 reveal">
+                <h2 class="font-headline-md text-headline-md text-on-surface text-center mb-8">سوالات متداول</h2>
+                <div class="max-w-2xl mx-auto">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>هزینه پروژه‌ها چگونه محاسبه می‌شود؟</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="font-body-md text-on-surface-variant">هزینه بر اساس پیچیدگی، زمان تحویل و حجم کار تعیین می‌شود. برای دریافت برآورد دقیق، فرم تماس را پر کنید.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>چه مدت زمانی برای تحویل پروژه نیاز است؟</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="font-body-md text-on-surface-variant">بسته به نوع پروژه متفاوت است. معمولاً تدوین ویدیو ۳ تا ۷ روز کاری، وب‌سایت ۱ تا ۲ هفته و اپلیکیشن ۲ تا ۴ هفته زمان می‌برد.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>آیا امکان اصلاح بعد از تحویل وجود دارد؟</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="font-body-md text-on-surface-variant">بله، هر پروژه شامل دو مرحله اصلاحات رایگان است تا نتیجه نهایی مطابق انتظار شما باشد.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>آیا برای پروژه‌های بزرگ قرارداد رسمی منعقد می‌شود؟</span>
+                            <span class="material-symbols-outlined faq-icon">expand_more</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="font-body-md text-on-surface-variant">بله، برای پروژه‌های بزرگ‌تر، قرارداد رسمی با جزئیات کامل تنظیم می‌شود تا حقوق هر دو طرف محفوظ باشد.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center reveal" style="--reveal-delay: 0.2s;">
                 <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block" href="#" onclick="navigateTo('contact'); return false;">
                     دریافت مشاوره رایگان
                 </a>
@@ -671,52 +1440,56 @@
 
         <!-- ─── CONTACT ─── -->
         <section id="page-contact" class="page-section">
-            <div class="text-center mb-16 mt-4">
-                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4">آغاز <span class="text-primary">همکاری</span></h1>
+            <div class="text-center mb-16 mt-4 reveal">
+                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4">آغاز <span class="text-primary text-glow">همکاری</span></h1>
                 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">ایده‌های خود را با ما در میان بگذارید تا با بالاترین کیفیت و در کمترین زمان آنها را به واقعیت تبدیل کنیم.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 <!-- Contact Info -->
-                <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1">
-                    <div class="glass-panel rounded-xl p-6 shadow-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-1 h-full bg-primary/50"></div>
+                <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1 reveal reveal-left" style="--reveal-delay: 0.15s;">
+                    <div class="glass-panel rounded-xl p-6 shadow-2xl relative overflow-hidden shine-effect">
+                        <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary to-secondary"></div>
                         <h3 class="font-headline-md text-headline-md text-on-background mb-6">اطلاعات تماس</h3>
                         <div class="flex flex-col gap-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0 border border-secondary/20">
+                            <div class="flex items-start gap-4 group cursor-pointer">
+                                <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0 border border-secondary/20 transition-all group-hover:scale-110 group-hover:bg-secondary/20 group-hover:shadow-[0_0_15px_rgba(173,198,255,0.4)]">
                                     <span class="material-symbols-outlined">mail</span>
                                 </div>
                                 <div>
                                     <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">ایمیل ارتباطی</h4>
-                                    <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left">Ritm_FreeLancer@Gmail.com</p>
+                                    <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left group-hover:text-secondary transition-colors">Ritm_FreeLancer@Gmail.com</p>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20">
+                            <div class="flex items-start gap-4 group cursor-pointer">
+                                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20 transition-all group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-[0_0_15px_rgba(139,92,246,0.4)]">
                                     <span class="material-symbols-outlined">call</span>
                                 </div>
                                 <div>
                                     <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">تلفن تماس</h4>
-                                    <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left">+98 9939189217</p>
+                                    <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left group-hover:text-primary transition-colors">+98 9939189217</p>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20">
+                            <div class="flex items-start gap-4 group cursor-pointer">
+                                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20 transition-all group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-[0_0_15px_rgba(139,92,246,0.4)]">
                                     <span class="material-symbols-outlined">location_on</span>
                                 </div>
                                 <div>
                                     <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">آدرس</h4>
-                                    <p class="font-body-md text-body-md text-on-surface-variant">تهران، ایران</p>
+                                    <p class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">تهران، ایران</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Map -->
+                    <div class="glass-panel rounded-xl overflow-hidden shadow-2xl">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207344.55121260444!2d51.266292949999996!3d35.707759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00491ff3b1f9%3A0x2a45f7e08e6e6e61!2sTehran%2C%20Iran!5e0!3m2!1sen!2s!4v1710000000000" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
 
                 <!-- Form -->
-                <div class="lg:col-span-8 order-1 lg:order-2">
-                    <div class="glass-panel rounded-xl p-8 shadow-2xl relative">
+                <div class="lg:col-span-8 order-1 lg:order-2 reveal reveal-right" style="--reveal-delay: 0.25s;">
+                    <div class="glass-panel rounded-xl p-8 shadow-2xl relative shine-effect">
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
 
                         <!-- Success & Error Messages -->
@@ -729,15 +1502,17 @@
                             خطا در ارسال فرم. لطفاً دوباره تلاش کنید.
                         </div>
 
-                        <form class="relative z-10 flex flex-col gap-6" id="contact-form" action="https://formspree.io/f/mjgqpveq" method="POST">
+                        <form class="relative z-10 flex flex-col gap-6" id="contact-form" action="https://formspree.io/f/mjgqpveq" method="POST" novalidate>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="flex flex-col gap-2 relative group">
                                     <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="name">نام و نام خانوادگی</label>
                                     <input class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all placeholder-white/20" id="name" name="name" placeholder="مثال: علی رضایی" type="text" required>
+                                    <span class="validation-message text-red-400 text-xs hidden">لطفاً نام را وارد کنید</span>
                                 </div>
                                 <div class="flex flex-col gap-2 relative group">
                                     <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="contact">ایمیل یا شماره تماس</label>
                                     <input class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all placeholder-white/20 dir-ltr text-left" id="contact" name="contact" placeholder="0912... یا email@example.com" type="text" required>
+                                    <span class="validation-message text-red-400 text-xs hidden">لطفاً ایمیل یا شماره معتبر وارد کنید</span>
                                 </div>
                             </div>
 
@@ -746,19 +1521,19 @@
                                 <div class="flex flex-wrap gap-3">
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="video" checked>
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">تدوین ویدیو</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">تدوین ویدیو</div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="web">
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">توسعه وب</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">توسعه وب</div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="mobile">
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">اپلیکیشن موبایل</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">اپلیکیشن موبایل</div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="other">
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10">سایر موارد</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">سایر موارد</div>
                                     </label>
                                 </div>
                             </div>
@@ -776,6 +1551,7 @@
                             <div class="flex flex-col gap-2 relative group mt-2">
                                 <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="message">توضیحات پروژه</label>
                                 <textarea class="w-full bg-black/30 border border-white/10 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-md transition-all placeholder-white/20 resize-y" id="message" name="message" placeholder="لطفاً جزئیات پروژه خود را اینجا بنویسید..." rows="5" required></textarea>
+                                <span class="validation-message text-red-400 text-xs hidden">لطفاً توضیحات پروژه را وارد کنید</span>
                             </div>
 
                             <!-- Formspree hidden field -->
@@ -796,13 +1572,15 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="w-full border-t border-white/5 bg-surface dark:bg-surface mt-auto">
+    <footer class="w-full border-t border-white/5 bg-surface dark:bg-surface mt-auto relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-6 gap-4 max-w-container-max mx-auto rtl">
-            <div class="font-headline-sm text-headline-sm font-bold text-primary">RITM</div>
+            <div class="flex items-center gap-2">
+                <img src="assets/logo.png" alt="ریتم" class="w-8 h-8 rounded-full object-contain">
+            </div>
             <div class="flex gap-6">
-                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity cursor-pointer">تلگرام</span>
-                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity cursor-pointer">بله</span>
-                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity cursor-pointer">اینستاگرام</span>
+                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-all hover:text-primary cursor-pointer hover:scale-110">تلگرام</span>
+                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-all hover:text-primary cursor-pointer hover:scale-110">بله</span>
+                <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-all hover:text-primary cursor-pointer hover:scale-110">اینستاگرام</span>
             </div>
             <div class="font-body-md text-body-md text-on-surface-variant text-sm">
                 © ۲۰۲۴ ریتم. تمامی حقوق محفوظ است.
@@ -812,110 +1590,472 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ── Navigation ──
-        function navigateTo(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+        // ═══════════════════════════════════════════════
+        // INITIALIZATION
+        // ═══════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+        });
 
-            // Show target
-            const target = document.getElementById('page-' + pageId);
-            if (target) target.classList.add('active');
-
-            // Update nav links (desktop)
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
-                link.classList.add('text-on-surface/70');
-                if (link.dataset.page === pageId) {
-                    link.classList.add('active', 'text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
-                    link.classList.remove('text-on-surface/70');
-                }
-            });
-
-            // Update mobile nav icons
-            document.querySelectorAll('.md\\:hidden .nav-link').forEach(link => {
-                link.classList.remove('text-primary');
-                link.classList.add('text-on-surface-variant');
-                const icon = link.querySelector('.material-symbols-outlined');
-                if (icon) {
-                    icon.style.fontVariationSettings = "'FILL' 0";
-                }
-                if (link.dataset.page === pageId) {
-                    link.classList.add('text-primary');
-                    link.classList.remove('text-on-surface-variant');
-                    if (icon) {
-                        icon.style.fontVariationSettings = "'FILL' 1";
-                    }
-                }
-            });
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function initApp() {
+            hidePreloader();
+            initNavigation();
+            initRevealAnimations();
+            initTiltEffect();
+            initTypingEffect();
+            initFilters();
+            initSearch();
+            initForm();
+            initSmoothScroll();
+            initParallax();
+            initBackToTop();
+            initScrollProgress();
+            initChatButton();
+            initModal();
+            initFAQ();
+            initParticles();
+            initThemeToggle();
         }
 
-        // ── Portfolio Filters ──
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
+        // ═══════════════════════════════════════════════
+        // PRELOADER
+        // ═══════════════════════════════════════════════
+        function hidePreloader() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            }
+        }
 
-                const filter = this.dataset.filter;
-                document.querySelectorAll('#portfolio-grid .glass-card').forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'flex';
+        // ═══════════════════════════════════════════════
+        // NAVIGATION
+        // ═══════════════════════════════════════════════
+        function initNavigation() {
+            window.navigateTo = function(pageId) {
+                document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+                const target = document.getElementById('page-' + pageId);
+                if (target) {
+                    target.classList.add('active');
+                    initRevealAnimations();
+                }
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    link.classList.remove('text-primary', 'font-bold');
+                    link.classList.add('text-on-surface/70');
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('active', 'text-primary', 'font-bold');
+                        link.classList.remove('text-on-surface/70');
+                    }
+                });
+
+                document.querySelectorAll('.md\\:hidden .nav-link').forEach(link => {
+                    link.classList.remove('text-primary');
+                    link.classList.add('text-on-surface-variant');
+                    const icon = link.querySelector('.material-symbols-outlined');
+                    if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('text-primary');
+                        link.classList.remove('text-on-surface-variant');
+                        if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+                    }
+                });
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            window.navigateTo = window.navigateTo;
+        }
+
+        // ═══════════════════════════════════════════════
+        // SCROLL REVEAL
+        // ═══════════════════════════════════════════════
+        let revealObserver;
+        function initRevealAnimations() {
+            if (revealObserver) revealObserver.disconnect();
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            revealElements.forEach(el => {
+                el.classList.remove('visible');
+                revealObserver.observe(el);
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // 3D TILT EFFECT
+        // ═══════════════════════════════════════════════
+        function initTiltEffect() {
+            if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+            document.querySelectorAll('[data-tilt]').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / centerY * -8;
+                    const rotateY = (x - centerX) / centerX * 8;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.015)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // TYPING EFFECT
+        // ═══════════════════════════════════════════════
+        function initTypingEffect() {
+            const typingElement = document.getElementById('typing-text');
+            if (!typingElement) return;
+            const phrases = ['تدوین خلاقانه', 'توسعه وب', 'اپلیکیشن موبایل', 'ساخت کدهای سایت'];
+            let phraseIndex = 0, charIndex = 0, isDeleting = false, isWaiting = false;
+            function type() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isWaiting) {
+                    setTimeout(() => { isWaiting = false; isDeleting = true; type(); }, 2000);
+                    return;
+                }
+                if (!isDeleting) {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                    if (charIndex === currentPhrase.length) {
+                        isWaiting = true;
+                        setTimeout(type, 2000);
+                        return;
+                    }
+                    setTimeout(type, 80);
+                } else {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                    if (charIndex === 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                    }
+                    setTimeout(type, 40);
+                }
+            }
+            type();
+        }
+
+        // ═══════════════════════════════════════════════
+        // PORTFOLIO FILTERS & SEARCH
+        // ═══════════════════════════════════════════════
+        function initFilters() {
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    applyPortfolioFilters();
+                });
+            });
+        }
+        function initSearch() {
+            const searchInput = document.getElementById('portfolio-search');
+            if (searchInput) searchInput.addEventListener('input', applyPortfolioFilters);
+        }
+        function applyPortfolioFilters() {
+            const activeFilter = document.querySelector('.filter-chip.active')?.dataset.filter || 'all';
+            const searchTerm = document.getElementById('portfolio-search')?.value.toLowerCase().trim() || '';
+            const cards = document.querySelectorAll('#portfolio-grid .glass-card');
+            cards.forEach((card, index) => {
+                const category = card.dataset.category;
+                const title = card.dataset.title?.toLowerCase() || '';
+                const desc = card.dataset.desc?.toLowerCase() || '';
+                const matchesFilter = (activeFilter === 'all' || category === activeFilter);
+                const matchesSearch = (!searchTerm || title.includes(searchTerm) || desc.includes(searchTerm));
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'flex';
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = `fadeUp 0.5s ease ${index * 0.05}s forwards`;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // FORM VALIDATION & SUBMISSION
+        // ═══════════════════════════════════════════════
+        function initForm() {
+            const form = document.getElementById('contact-form');
+            const successEl = document.getElementById('form-success');
+            const errorEl = document.getElementById('form-error');
+            const submitBtn = document.getElementById('submit-btn');
+            if (!form) return;
+
+            const nameInput = document.getElementById('name');
+            const contactInput = document.getElementById('contact');
+            const messageInput = document.getElementById('message');
+
+            nameInput.addEventListener('blur', () => validateField(nameInput, nameInput.value.trim().length >= 2));
+            contactInput.addEventListener('blur', () => validateField(contactInput, isValidContact(contactInput.value.trim())));
+            messageInput.addEventListener('blur', () => validateField(messageInput, messageInput.value.trim().length >= 10));
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const isNameValid = nameInput.value.trim().length >= 2;
+                const isContactValid = isValidContact(contactInput.value.trim());
+                const isMessageValid = messageInput.value.trim().length >= 10;
+                validateField(nameInput, isNameValid);
+                validateField(contactInput, isContactValid);
+                validateField(messageInput, isMessageValid);
+
+                if (!isNameValid || !isContactValid || !isMessageValid) {
+                    errorEl.textContent = 'لطفاً فیلدهای ضروری را به درستی پر کنید.';
+                    errorEl.classList.add('show');
+                    return;
+                }
+
+                successEl.classList.remove('show');
+                errorEl.classList.remove('show');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'در حال ارسال...';
+
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (response.ok) {
+                        successEl.classList.add('show');
+                        form.reset();
+                        submitBtn.classList.add('shake');
+                        setTimeout(() => submitBtn.classList.remove('shake'), 500);
                     } else {
-                        card.style.display = 'none';
+                        errorEl.textContent = 'خطا در ارسال فرم. لطفاً دوباره تلاش کنید.';
+                        errorEl.classList.add('show');
+                        submitBtn.classList.add('shake');
+                        setTimeout(() => submitBtn.classList.remove('shake'), 500);
+                    }
+                } catch (error) {
+                    errorEl.textContent = 'خطا در اتصال. لطفاً دوباره تلاش کنید.';
+                    errorEl.classList.add('show');
+                    submitBtn.classList.add('shake');
+                    setTimeout(() => submitBtn.classList.remove('shake'), 500);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'ارسال درخواست <span class="material-symbols-outlined text-[20px]">send</span>';
+                }
+            });
+        }
+        function validateField(input, isValid) {
+            const messageEl = input.parentElement.querySelector('.validation-message');
+            if (isValid) {
+                input.classList.remove('input-invalid');
+                input.classList.add('input-valid');
+                if (messageEl) messageEl.classList.add('hidden');
+            } else {
+                input.classList.remove('input-valid');
+                input.classList.add('input-invalid');
+                if (messageEl) messageEl.classList.remove('hidden');
+            }
+        }
+        function isValidContact(value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^(\+98|0)?9\d{9}$/;
+            return emailRegex.test(value) || phoneRegex.test(value);
+        }
+
+        // ═══════════════════════════════════════════════
+        // SMOOTH SCROLL & PARALLAX
+        // ═══════════════════════════════════════════════
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
             });
-        });
-
-        // ── Form Submission to Formspree ──
-        const form = document.getElementById('contact-form');
-        const successEl = document.getElementById('form-success');
-        const errorEl = document.getElementById('form-error');
-        const submitBtn = document.getElementById('submit-btn');
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            // Hide previous messages
-            successEl.classList.remove('show');
-            errorEl.classList.remove('show');
-
-            // Disable button
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'در حال ارسال...';
-
-            try {
-                const formData = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    successEl.classList.add('show');
-                    form.reset();
-                } else {
-                    errorEl.classList.add('show');
+        }
+        function initParallax() {
+            const hero = document.querySelector('#page-home .min-h-\\[80vh\\]');
+            if (!hero) return;
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                if (scrollY < window.innerHeight) {
+                    hero.style.transform = `translateY(${scrollY * 0.2}px)`;
+                    hero.style.opacity = 1 - (scrollY / window.innerHeight) * 0.6;
                 }
-            } catch (error) {
-                errorEl.classList.add('show');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'ارسال درخواست <span class="material-symbols-outlined text-[20px]">send</span>';
+            }, { passive: true });
+        }
+
+        // ═══════════════════════════════════════════════
+        // BACK TO TOP
+        // ═══════════════════════════════════════════════
+        function initBackToTop() {
+            const btn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) btn.classList.add('visible');
+                else btn.classList.remove('visible');
+            }, { passive: true });
+            btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+
+        // ═══════════════════════════════════════════════
+        // SCROLL PROGRESS BAR
+        // ═══════════════════════════════════════════════
+        function initScrollProgress() {
+            const progressBar = document.getElementById('scroll-progress-bar');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                progressBar.style.width = progress + '%';
+            }, { passive: true });
+        }
+
+        // ═══════════════════════════════════════════════
+        // FLOATING CONTACT BUTTON (Email/Phone)
+        // ═══════════════════════════════════════════════
+        function initChatButton() {
+            const chatBtn = document.getElementById('chat-float');
+            const icon = document.getElementById('chat-float-icon');
+            if (!chatBtn || !icon) return;
+
+            const isMobile = window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
+
+            if (isMobile) {
+                chatBtn.classList.add('phone-mode');
+                icon.textContent = 'call';
+                chatBtn.setAttribute('aria-label', 'تماس تلفنی');
+                chatBtn.onclick = () => { window.location.href = 'tel:+989939189217'; };
+            } else {
+                chatBtn.classList.add('email-mode');
+                icon.textContent = 'mail';
+                chatBtn.setAttribute('aria-label', 'ارسال ایمیل');
+                chatBtn.onclick = () => { window.location.href = 'mailto:Ritm_FreeLancer@Gmail.com'; };
             }
-        });
+        }
 
-        // ── Set default active state on load ──
-        document.addEventListener('DOMContentLoaded', function() {
-            navigateTo('home');
-        });
+        // ═══════════════════════════════════════════════
+        // MODAL
+        // ═══════════════════════════════════════════════
+        function initModal() {
+            const modalOverlay = document.getElementById('project-modal');
+            const modalBody = document.getElementById('modal-body');
+            const modalClose = document.getElementById('modal-close');
+
+            document.querySelectorAll('#portfolio-grid .glass-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const title = card.dataset.title;
+                    const desc = card.dataset.desc;
+                    const img = card.querySelector('img')?.src || '';
+                    modalBody.innerHTML = `
+                        <h3 class="text-2xl font-bold mb-4">${title}</h3>
+                        <img src="${img}" alt="${title}" class="w-full rounded-lg mb-4" onerror="this.style.display='none'">
+                        <p class="text-on-surface-variant">${desc}</p>
+                        <div class="mt-4 flex gap-3">
+                            <button class="btn-primary px-6 py-2 rounded-full text-sm" onclick="window.location.href='#contact'">درخواست مشابه</button>
+                        </div>
+                    `;
+                    modalOverlay.classList.add('active');
+                });
+            });
+
+            modalClose.addEventListener('click', () => modalOverlay.classList.remove('active'));
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) modalOverlay.classList.remove('active');
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // FAQ ACCORDION
+        // ═══════════════════════════════════════════════
+        function initFAQ() {
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.addEventListener('click', () => {
+                    const item = q.parentElement;
+                    const isActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                    if (!isActive) item.classList.add('active');
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // PARTICLES
+        // ═══════════════════════════════════════════════
+        function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            const particles = [];
+            const particleCount = 50;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(208, 188, 255, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animate);
+            }
+            animate();
+            window.addEventListener('resize', () => {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // THEME TOGGLE
+        // ═══════════════════════════════════════════════
+        function initThemeToggle() {
+            const toggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const icon = toggle.querySelector('.material-symbols-outlined');
+            toggle.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    icon.textContent = 'light_mode';
+                } else {
+                    html.classList.add('dark');
+                    icon.textContent = 'dark_mode';
+                }
+            });
+        }
     </script>
-
 </body>
 </html>
