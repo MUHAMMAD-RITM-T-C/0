@@ -750,7 +750,7 @@
            ═══════════════════════════════════════════════ */
         #back-to-top {
             position: fixed;
-            bottom: 100px;
+            bottom: 30px;
             right: 20px;
             width: 50px;
             height: 50px;
@@ -776,46 +776,6 @@
             background: rgba(139, 92, 246, 0.4);
             transform: translateY(-3px);
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-        }
-
-        /* ═══════════════════════════════════════════════
-           FLOATING CONTACT BUTTON (Email / Phone)
-           ═══════════════════════════════════════════════ */
-        #chat-float {
-            --pulse-color: rgba(139, 92, 246, 0.5);
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6, #6d3bd7);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 500;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-        #chat-float.email-mode {
-            --pulse-color: rgba(59, 130, 246, 0.5);
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        }
-        #chat-float.phone-mode {
-            --pulse-color: rgba(34, 197, 94, 0.5);
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-        }
-        #chat-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 var(--pulse-color); }
-            70% { box-shadow: 0 0 0 15px transparent; }
-            100% { box-shadow: 0 0 0 0 transparent; }
         }
 
         /* ═══════════════════════════════════════════════
@@ -953,6 +913,27 @@
             transform: rotate(20deg);
         }
 
+        /* ═══════════════════════════════════════════════
+           LANGUAGE TOGGLE
+           ═══════════════════════════════════════════════ */
+        .lang-toggle {
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #e5e2e1;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .lang-toggle:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #8b5cf6;
+            color: #d0bcff;
+        }
+
         /* Light mode overrides */
         html:not(.dark) body {
             background-color: #f5f5f5;
@@ -984,6 +965,16 @@
         html:not(.dark) .btn-primary {
             color: #fff;
         }
+        html:not(.dark) .lang-toggle {
+            color: #1a1a1a;
+            background: rgba(0,0,0,0.05);
+            border-color: rgba(0,0,0,0.1);
+        }
+        html:not(.dark) .lang-toggle:hover {
+            background: rgba(0,0,0,0.1);
+            border-color: #8b5cf6;
+            color: #8b5cf6;
+        }
 
         /* Responsive fixes */
         @media (max-width: 768px) {
@@ -994,12 +985,6 @@
                 right: 10px;
                 width: 40px;
                 height: 40px;
-            }
-            #chat-float {
-                width: 50px;
-                height: 50px;
-                bottom: 15px;
-                left: 15px;
             }
         }
     </style>
@@ -1023,11 +1008,6 @@
         <span class="material-symbols-outlined">arrow_upward</span>
     </div>
 
-    <!-- Floating Contact Button (Email on Desktop, Phone on Mobile) -->
-    <div id="chat-float" aria-label="تماس">
-        <span id="chat-float-icon" class="material-symbols-outlined" style="font-size: 30px;">mail</span>
-    </div>
-
     <!-- Modal Overlay -->
     <div id="project-modal" class="modal-overlay">
         <div class="modal-content">
@@ -1041,10 +1021,14 @@
     </div>
 
     <!-- Theme Toggle -->
-    <!-- اصلاح: در دسکتاپ به پایین راست منتقل شد تا با دکمه ایمیل تداخل نکند -->
     <div class="theme-toggle fixed top-4 left-4 z-[60] md:top-auto md:bottom-6 md:right-6 md:left-auto" id="theme-toggle" aria-label="تغییر حالت تاریک/روشن">
         <span class="material-symbols-outlined">dark_mode</span>
     </div>
+
+    <!-- Language Toggle -->
+    <button class="lang-toggle fixed top-4 right-4 z-[60] md:top-auto md:bottom-6 md:right-20 md:left-auto" id="lang-toggle" aria-label="تغییر زبان / Change language">
+        <span id="lang-label">فارسی</span>
+    </button>
 
     <!-- ===== AMBIENT BACKGROUND ===== -->
     <div class="ambient-glow"></div>
@@ -1057,12 +1041,12 @@
             <img src="assets/logo.png" alt="ریتم" class="w-10 h-10 rounded-full object-contain">
         </div>
         <nav class="flex gap-8 items-center" aria-label="ناوبری اصلی">
-            <span class="nav-link active text-primary font-bold" data-page="home" onclick="navigateTo('home')" role="link" tabindex="0">خانه</span>
-            <span class="nav-link text-on-surface/70" data-page="portfolio" onclick="navigateTo('portfolio')" role="link" tabindex="0">پورتفولیو</span>
-            <span class="nav-link text-on-surface/70" data-page="services" onclick="navigateTo('services')" role="link" tabindex="0">خدمات</span>
-            <span class="nav-link text-on-surface/70" data-page="contact" onclick="navigateTo('contact')" role="link" tabindex="0">تماس</span>
+            <span class="nav-link active text-primary font-bold" data-page="home" onclick="navigateTo('home')" role="link" tabindex="0" data-i18n="nav-home">خانه</span>
+            <span class="nav-link text-on-surface/70" data-page="portfolio" onclick="navigateTo('portfolio')" role="link" tabindex="0" data-i18n="nav-portfolio">پورتفولیو</span>
+            <span class="nav-link text-on-surface/70" data-page="services" onclick="navigateTo('services')" role="link" tabindex="0" data-i18n="nav-services">خدمات</span>
+            <span class="nav-link text-on-surface/70" data-page="contact" onclick="navigateTo('contact')" role="link" tabindex="0" data-i18n="nav-contact">تماس</span>
         </nav>
-        <a class="btn-primary px-7 py-2.5 rounded-full font-body-md text-body-md hover:scale-105 active:scale-95 transition-transform inline-flex items-center justify-center" href="#" onclick="navigateTo('contact'); return false;">
+        <a class="btn-primary px-7 py-2.5 rounded-full font-body-md text-body-md hover:scale-105 active:scale-95 transition-transform inline-flex items-center justify-center" href="#" onclick="navigateTo('contact'); return false;" data-i18n="nav-cta">
             شروع پروژه
         </a>
     </header>
@@ -1071,19 +1055,19 @@
     <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 flex justify-around items-center py-3 z-50 shadow-[0_20px_40px_rgba(0,0,0,0.4)]" aria-label="ناوبری موبایل">
         <span class="flex flex-col items-center text-primary gap-0.5 nav-link active" data-page="home" onclick="navigateTo('home')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL'1;">home</span>
-            <span class="text-[10px] font-bold">خانه</span>
+            <span class="text-[10px] font-bold" data-i18n="nav-home">خانه</span>
         </span>
         <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="portfolio" onclick="navigateTo('portfolio')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl">work</span>
-            <span class="text-[10px]">پورتفولیو</span>
+            <span class="text-[10px]" data-i18n="nav-portfolio">پورتفولیو</span>
         </span>
         <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="services" onclick="navigateTo('services')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl">design_services</span>
-            <span class="text-[10px]">خدمات</span>
+            <span class="text-[10px]" data-i18n="nav-services">خدمات</span>
         </span>
         <span class="flex flex-col items-center text-on-surface-variant gap-0.5 nav-link" data-page="contact" onclick="navigateTo('contact')" role="link" tabindex="0">
             <span class="material-symbols-outlined text-2xl">contact_support</span>
-            <span class="text-[10px]">تماس</span>
+            <span class="text-[10px]" data-i18n="nav-contact">تماس</span>
         </span>
     </nav>
 
@@ -1097,20 +1081,21 @@
                 <canvas id="particles-canvas"></canvas>
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel mb-8 border-primary/30 reveal reveal-scale" style="--reveal-delay: 0.1s;">
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <span class="font-code-label text-code-label text-primary">آژانس خلاقیت دیجیتال</span>
+                    <span class="font-code-label text-code-label text-primary" data-i18n="hero-badge">آژانس خلاقیت دیجیتال</span>
                 </div>
                 <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6 max-w-4xl leading-tight reveal" style="--reveal-delay: 0.2s;">
-                    ریتم – <span class="text-primary text-glow typing-cursor" id="typing-text">تدوین خلاقانه</span>
+                    <span data-i18n="hero-title-prefix">ریتم –</span>
+                    <span class="text-primary text-glow typing-cursor" id="typing-text" data-i18n="hero-title-typing">تدوین خلاقانه</span>
                 </h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 reveal" style="--reveal-delay: 0.35s;">
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 reveal" style="--reveal-delay: 0.35s;" data-i18n="hero-desc">
                     ما مرزهای بین هنر دیجیتال و مهندسی نرم‌افزار را می‌شکنیم. با ریتم، داستان برند شما با بالاترین استانداردهای بصری و تکنیکال روایت می‌شود.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 items-center reveal" style="--reveal-delay: 0.5s;">
-                    <a class="btn-primary px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg inline-flex items-center gap-2 justify-center" href="#" onclick="navigateTo('contact'); return false;">
+                    <a class="btn-primary px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg inline-flex items-center gap-2 justify-center" href="#" onclick="navigateTo('contact'); return false;" data-i18n="hero-btn-start">
                         شروع پروژه
                         <span class="material-symbols-outlined text-sm">arrow_back</span>
                     </a>
-                    <button class="glass-panel px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300 hover:scale-105" onclick="navigateTo('portfolio')">
+                    <button class="glass-panel px-8 py-3.5 rounded-full font-headline-sm text-headline-sm !text-lg text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300 hover:scale-105" onclick="navigateTo('portfolio')" data-i18n="hero-btn-portfolio">
                         مشاهده پورتفولیو
                     </button>
                 </div>
@@ -1119,8 +1104,8 @@
             <!-- Features / Services Preview -->
             <div class="py-24" id="services-preview">
                 <div class="mb-12 flex flex-col gap-2 reveal">
-                    <h2 class="font-headline-md text-headline-md text-on-surface">خدمات تخصصی</h2>
-                    <p class="font-body-md text-body-md text-on-surface-variant">ترکیب هنر، حرکت و کد برای خلق تجربه‌های بی‌نظیر.</p>
+                    <h2 class="font-headline-md text-headline-md text-on-surface" data-i18n="services-title">خدمات تخصصی</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="services-sub">ترکیب هنر، حرکت و کد برای خلق تجربه‌های بی‌نظیر.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Card: Video Editing -->
@@ -1131,8 +1116,8 @@
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
                             </div>
                             <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary">تدوین و پست‌پروداکشن</h3>
-                                <p class="font-body-md text-body-md text-on-surface-variant">ویرایش حرفه‌ای ویدیو با پریمیر پرو، اصلاح رنگ با استانداردهای سینمایی.</p>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary" data-i18n="service-video-title">تدوین و پست‌پروداکشن</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="service-video-desc">ویرایش حرفه‌ای ویدیو با پریمیر پرو، اصلاح رنگ با استانداردهای سینمایی.</p>
                             </div>
                         </div>
                     </div>
@@ -1144,8 +1129,8 @@
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">code</span>
                             </div>
                             <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary">توسعه وب</h3>
-                                <p class="font-body-md text-body-md text-on-surface-variant">ساخت کدهای سایت‌های پیشرفته با عملکرد بالا و طراحی واکنش‌گرا.</p>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary" data-i18n="service-web-title">توسعه وب</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="service-web-desc">ساخت کدهای سایت‌های پیشرفته با عملکرد بالا و طراحی واکنش‌گرا.</p>
                             </div>
                         </div>
                     </div>
@@ -1157,8 +1142,8 @@
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL'1;">smartphone</span>
                             </div>
                             <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary">اپلیکیشن موبایل</h3>
-                                <p class="font-body-md text-body-md text-on-surface-variant">ساخت اپلیکیشن‌های موبایل پایه با تمرکز بر کارایی و تجربه کاربری.</p>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 transition-colors group-hover:text-primary" data-i18n="service-mobile-title">اپلیکیشن موبایل</h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="service-mobile-desc">ساخت اپلیکیشن‌های موبایل پایه با تمرکز بر کارایی و تجربه کاربری.</p>
                             </div>
                         </div>
                     </div>
@@ -1170,11 +1155,11 @@
                 <div class="glass-panel rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] shine-effect reveal reveal-scale" style="--reveal-delay: 0.2s;">
                     <div class="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-50"></div>
                     <div class="relative z-10 flex flex-col items-center">
-                        <h2 class="font-headline-md text-headline-md text-on-surface mb-6">آماده خلق یک اثر ماندگار هستید؟</h2>
-                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-10">
+                        <h2 class="font-headline-md text-headline-md text-on-surface mb-6" data-i18n="cta-title">آماده خلق یک اثر ماندگار هستید؟</h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-10" data-i18n="cta-desc">
                             تیم متخصص ما آماده است تا ایده‌های شما را به واقعیت تبدیل کند. همین حالا برای مشاوره رایگان با ما تماس بگیرید.
                         </p>
-                        <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block text-center" href="#" onclick="navigateTo('contact'); return false;">
+                        <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block text-center" href="#" onclick="navigateTo('contact'); return false;" data-i18n="cta-btn">
                             درخواست مشاوره رایگان
                         </a>
                     </div>
@@ -1185,8 +1170,8 @@
         <!-- ─── PORTFOLIO ─── -->
         <section id="page-portfolio" class="page-section">
             <div class="mb-16 flex flex-col gap-6 text-center md:text-right reveal">
-                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">نمونه کارها</h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0">
+                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface" data-i18n="portfolio-title">نمونه کارها</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0" data-i18n="portfolio-desc">
                     مجموعه‌ای از پروژه‌های برگزیده ما در زمینه‌های تدوین ویدیو، توسعه وب و اپلیکیشن موبایل.
                 </p>
             </div>
@@ -1194,10 +1179,10 @@
             <!-- Search & Filters -->
             <div class="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between reveal" style="--reveal-delay: 0.15s;">
                 <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    <button class="filter-chip active px-6 py-2 rounded-full font-code-label text-code-label" data-filter="all">همه پروژه‌ها</button>
-                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="video">تدوین ویدیو</button>
-                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="web">توسعه وب</button>
-                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="mobile">اپلیکیشن موبایل</button>
+                    <button class="filter-chip active px-6 py-2 rounded-full font-code-label text-code-label" data-filter="all" data-i18n="filter-all">همه پروژه‌ها</button>
+                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="video" data-i18n="filter-video">تدوین ویدیو</button>
+                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="web" data-i18n="filter-web">توسعه وب</button>
+                    <button class="filter-chip px-6 py-2 rounded-full font-code-label text-code-label" data-filter="mobile" data-i18n="filter-mobile">اپلیکیشن موبایل</button>
                 </div>
                 <div class="relative w-full md:w-64">
                     <input type="text" id="portfolio-search" placeholder="جستجو..." class="w-full bg-black/20 border border-white/10 rounded-full py-2 px-4 pl-10 text-on-surface placeholder-white/30 focus:border-primary transition-all">
@@ -1224,10 +1209,10 @@
                     </div>
                     <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">تیزر تبلیغاتی محصول</h3>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors" data-i18n="p1-title">تیزر تبلیغاتی محصول</h3>
                             <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">تدوین و مونتاژ تیزر ۳۰ ثانیه‌ای با پریمیر پرو، شامل اصلاح رنگ و صداگذاری.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2" data-i18n="p1-desc">تدوین و مونتاژ تیزر ۳۰ ثانیه‌ای با پریمیر پرو، شامل اصلاح رنگ و صداگذاری.</p>
                     </div>
                 </article>
 
@@ -1243,10 +1228,10 @@
                     </div>
                     <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">سایت شرکتی مدرن</h3>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors" data-i18n="p2-title">سایت شرکتی مدرن</h3>
                             <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی و کدنویسی وب‌سایت شرکتی با انیمیشن‌های روان و بهینه‌سازی سئو.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2" data-i18n="p2-desc">طراحی و کدنویسی وب‌سایت شرکتی با انیمیشن‌های روان و بهینه‌سازی سئو.</p>
                     </div>
                 </article>
 
@@ -1262,10 +1247,10 @@
                     </div>
                     <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">اپلیکیشن مدیریت وظایف</h3>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors" data-i18n="p3-title">اپلیکیشن مدیریت وظایف</h3>
                             <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">اپلیکیشن موبایل ساده برای مدیریت وظایف روزانه با قابلیت ثبت و پیگیری.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2" data-i18n="p3-desc">اپلیکیشن موبایل ساده برای مدیریت وظایف روزانه با قابلیت ثبت و پیگیری.</p>
                     </div>
                 </article>
 
@@ -1281,10 +1266,10 @@
                     </div>
                     <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">موزیک ویدیو</h3>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors" data-i18n="p4-title">موزیک ویدیو</h3>
                             <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">تدوین موزیک ویدیو با ریتم‌سازی دقیق و افکت‌های بصری جذاب.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2" data-i18n="p4-desc">تدوین موزیک ویدیو با ریتم‌سازی دقیق و افکت‌های بصری جذاب.</p>
                     </div>
                 </article>
 
@@ -1300,10 +1285,10 @@
                     </div>
                     <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">وب‌سایت رزومه</h3>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors" data-i18n="p5-title">وب‌سایت رزومه</h3>
                             <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">طراحی و پیاده‌سازی وب‌سایت شخصی با تمرکز بر سادگی و سرعت بارگذاری.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2" data-i18n="p5-desc">طراحی و پیاده‌سازی وب‌سایت شخصی با تمرکز بر سادگی و سرعت بارگذاری.</p>
                     </div>
                 </article>
 
@@ -1319,16 +1304,16 @@
                     </div>
                     <div class="flex flex-col gap-2 p-2 tilt-card-inner">
                         <div class="flex justify-between items-center">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">اپلیکیشن یادداشت‌برداری</h3>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors" data-i18n="p6-title">اپلیکیشن یادداشت‌برداری</h3>
                             <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-all transform -rotate-45 group-hover:-rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_forward</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">اپلیکیشن موبایل سبک برای یادداشت‌برداری سریع با ذخیره‌سازی محلی.</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2" data-i18n="p6-desc">اپلیکیشن موبایل سبک برای یادداشت‌برداری سریع با ذخیره‌سازی محلی.</p>
                     </div>
                 </article>
             </div>
 
             <div class="mt-16 text-center reveal" style="--reveal-delay: 0.2s;">
-                <button class="glass-panel px-8 py-3 rounded-full font-body-md text-body-md text-on-surface hover:border-primary hover:text-primary transition-all duration-300 inline-flex items-center gap-2 hover:scale-105" onclick="navigateTo('contact')">
+                <button class="glass-panel px-8 py-3 rounded-full font-body-md text-body-md text-on-surface hover:border-primary hover:text-primary transition-all duration-300 inline-flex items-center gap-2 hover:scale-105" onclick="navigateTo('contact')" data-i18n="portfolio-cta">
                     درخواست پروژه مشابه
                     <span class="material-symbols-outlined text-sm">arrow_back</span>
                 </button>
@@ -1338,8 +1323,8 @@
         <!-- ─── SERVICES ─── -->
         <section id="page-services" class="page-section">
             <div class="mb-16 flex flex-col gap-6 text-center md:text-right reveal">
-                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">خدمات ما</h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0">
+                <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface" data-i18n="services-page-title">خدمات ما</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto md:mx-0" data-i18n="services-page-desc">
                     ما با ترکیب هنر دیجیتال و مهندسی نرم‌افزار، راه‌حل‌های خلاقانه و کاربردی برای برند شما ارائه می‌دهیم.
                 </p>
             </div>
@@ -1350,12 +1335,12 @@
                     <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-all duration-500 group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
                         <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL'1;">movie_edit</span>
                     </div>
-                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">تدوین و پست‌پروداکشن</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">ویرایش حرفه‌ای ویدیو با نرم‌افزار پریمیر پرو، اصلاح رنگ، صداگذاری و میکس.</p>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors" data-i18n="service-video-title">تدوین و پست‌پروداکشن</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="service-video-desc">ویرایش حرفه‌ای ویدیو با نرم‌افزار پریمیر پرو، اصلاح رنگ، صداگذاری و میکس.</p>
                     <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> تدوین فیلم، تیزر و مستند</li>
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> اصلاح رنگ حرفه‌ای (Color Grading)</li>
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> میکس و مسترینگ صدا</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv1-1">تدوین فیلم، تیزر و مستند</span></li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv1-2">اصلاح رنگ حرفه‌ای (Color Grading)</span></li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv1-3">میکس و مسترینگ صدا</span></li>
                     </ul>
                 </div>
 
@@ -1364,12 +1349,12 @@
                     <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-all duration-500 group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
                         <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL'1;">code</span>
                     </div>
-                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">توسعه وب</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">ساخت کدهای سایت‌های مدرن، واکنش‌گرا و بهینه‌شده با HTML، CSS و JavaScript.</p>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors" data-i18n="service-web-title">توسعه وب</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="service-web-desc">ساخت کدهای سایت‌های مدرن، واکنش‌گرا و بهینه‌شده با HTML، CSS و JavaScript.</p>
                     <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> وب‌سایت‌های شرکتی و شخصی</li>
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> طراحی واکنش‌گرا (Responsive)</li>
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> بهینه‌سازی سرعت و سئو</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv2-1">وب‌سایت‌های شرکتی و شخصی</span></li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv2-2">طراحی واکنش‌گرا (Responsive)</span></li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv2-3">بهینه‌سازی سرعت و سئو</span></li>
                     </ul>
                 </div>
 
@@ -1378,61 +1363,61 @@
                     <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:scale-110 transition-all duration-500 group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
                         <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL'1;">smartphone</span>
                     </div>
-                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">اپلیکیشن موبایل (پایه)</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">ساخت اپلیکیشن‌های موبایل ساده و کاربردی با تمرکز بر نیازهای پایه‌ای کاربران.</p>
+                    <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors" data-i18n="service-mobile-title">اپلیکیشن موبایل (پایه)</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="service-mobile-desc">ساخت اپلیکیشن‌های موبایل ساده و کاربردی با تمرکز بر نیازهای پایه‌ای کاربران.</p>
                     <ul class="mt-2 space-y-2 text-on-surface-variant font-body-md">
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> اپلیکیشن‌های مدیریتی و یادداشت</li>
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> رابط کاربری ساده و روان</li>
-                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> ذخیره‌سازی محلی و آفلاین</li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv3-1">اپلیکیشن‌های مدیریتی و یادداشت</span></li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv3-2">رابط کاربری ساده و روان</span></li>
+                        <li class="flex items-center gap-2 hover:text-primary transition-colors"><span class="text-primary">✓</span> <span data-i18n="sv3-3">ذخیره‌سازی محلی و آفلاین</span></li>
                     </ul>
                 </div>
             </div>
 
             <!-- FAQ Section -->
             <div class="mt-20 mb-16 reveal">
-                <h2 class="font-headline-md text-headline-md text-on-surface text-center mb-8">سوالات متداول</h2>
+                <h2 class="font-headline-md text-headline-md text-on-surface text-center mb-8" data-i18n="faq-title">سوالات متداول</h2>
                 <div class="max-w-2xl mx-auto">
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>هزینه پروژه‌ها چگونه محاسبه می‌شود؟</span>
+                            <span data-i18n="faq-q1">هزینه پروژه‌ها چگونه محاسبه می‌شود؟</span>
                             <span class="material-symbols-outlined faq-icon">expand_more</span>
                         </div>
                         <div class="faq-answer">
-                            <p class="font-body-md text-on-surface-variant">هزینه بر اساس پیچیدگی، زمان تحویل و حجم کار تعیین می‌شود. برای دریافت برآورد دقیق، فرم تماس را پر کنید.</p>
+                            <p class="font-body-md text-on-surface-variant" data-i18n="faq-a1">هزینه بر اساس پیچیدگی، زمان تحویل و حجم کار تعیین می‌شود. برای دریافت برآورد دقیق، فرم تماس را پر کنید.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>چه مدت زمانی برای تحویل پروژه نیاز است؟</span>
+                            <span data-i18n="faq-q2">چه مدت زمانی برای تحویل پروژه نیاز است؟</span>
                             <span class="material-symbols-outlined faq-icon">expand_more</span>
                         </div>
                         <div class="faq-answer">
-                            <p class="font-body-md text-on-surface-variant">بسته به نوع پروژه متفاوت است. معمولاً تدوین ویدیو ۳ تا ۷ روز کاری، وب‌سایت ۱ تا ۲ هفته و اپلیکیشن ۲ تا ۴ هفته زمان می‌برد.</p>
+                            <p class="font-body-md text-on-surface-variant" data-i18n="faq-a2">بسته به نوع پروژه متفاوت است. معمولاً تدوین ویدیو ۳ تا ۷ روز کاری، وب‌سایت ۱ تا ۲ هفته و اپلیکیشن ۲ تا ۴ هفته زمان می‌برد.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>آیا امکان اصلاح بعد از تحویل وجود دارد؟</span>
+                            <span data-i18n="faq-q3">آیا امکان اصلاح بعد از تحویل وجود دارد؟</span>
                             <span class="material-symbols-outlined faq-icon">expand_more</span>
                         </div>
                         <div class="faq-answer">
-                            <p class="font-body-md text-on-surface-variant">بله، هر پروژه شامل دو مرحله اصلاحات رایگان است تا نتیجه نهایی مطابق انتظار شما باشد.</p>
+                            <p class="font-body-md text-on-surface-variant" data-i18n="faq-a3">بله، هر پروژه شامل دو مرحله اصلاحات رایگان است تا نتیجه نهایی مطابق انتظار شما باشد.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>آیا برای پروژه‌های بزرگ قرارداد رسمی منعقد می‌شود؟</span>
+                            <span data-i18n="faq-q4">آیا برای پروژه‌های بزرگ قرارداد رسمی منعقد می‌شود؟</span>
                             <span class="material-symbols-outlined faq-icon">expand_more</span>
                         </div>
                         <div class="faq-answer">
-                            <p class="font-body-md text-on-surface-variant">بله، برای پروژه‌های بزرگ‌تر، قرارداد رسمی با جزئیات کامل تنظیم می‌شود تا حقوق هر دو طرف محفوظ باشد.</p>
+                            <p class="font-body-md text-on-surface-variant" data-i18n="faq-a4">بله، برای پروژه‌های بزرگ‌تر، قرارداد رسمی با جزئیات کامل تنظیم می‌شود تا حقوق هر دو طرف محفوظ باشد.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="mt-16 text-center reveal" style="--reveal-delay: 0.2s;">
-                <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block" href="#" onclick="navigateTo('contact'); return false;">
+                <a class="btn-primary px-10 py-4 rounded-full font-headline-sm text-headline-sm !text-lg inline-block" href="#" onclick="navigateTo('contact'); return false;" data-i18n="services-cta">
                     دریافت مشاوره رایگان
                 </a>
             </div>
@@ -1441,8 +1426,8 @@
         <!-- ─── CONTACT ─── -->
         <section id="page-contact" class="page-section">
             <div class="text-center mb-16 mt-4 reveal">
-                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4">آغاز <span class="text-primary text-glow">همکاری</span></h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">ایده‌های خود را با ما در میان بگذارید تا با بالاترین کیفیت و در کمترین زمان آنها را به واقعیت تبدیل کنیم.</p>
+                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-4" data-i18n="contact-title">آغاز <span class="text-primary text-glow">همکاری</span></h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto" data-i18n="contact-desc">ایده‌های خود را با ما در میان بگذارید تا با بالاترین کیفیت و در کمترین زمان آنها را به واقعیت تبدیل کنیم.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -1450,14 +1435,14 @@
                 <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1 reveal reveal-left" style="--reveal-delay: 0.15s;">
                     <div class="glass-panel rounded-xl p-6 shadow-2xl relative overflow-hidden shine-effect">
                         <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary to-secondary"></div>
-                        <h3 class="font-headline-md text-headline-md text-on-background mb-6">اطلاعات تماس</h3>
+                        <h3 class="font-headline-md text-headline-md text-on-background mb-6" data-i18n="contact-info-title">اطلاعات تماس</h3>
                         <div class="flex flex-col gap-6">
                             <div class="flex items-start gap-4 group cursor-pointer">
                                 <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0 border border-secondary/20 transition-all group-hover:scale-110 group-hover:bg-secondary/20 group-hover:shadow-[0_0_15px_rgba(173,198,255,0.4)]">
                                     <span class="material-symbols-outlined">mail</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">ایمیل ارتباطی</h4>
+                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1" data-i18n="contact-email-label">ایمیل ارتباطی</h4>
                                     <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left group-hover:text-secondary transition-colors">Ritm_FreeLancer@Gmail.com</p>
                                 </div>
                             </div>
@@ -1466,7 +1451,7 @@
                                     <span class="material-symbols-outlined">call</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">تلفن تماس</h4>
+                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1" data-i18n="contact-phone-label">تلفن تماس</h4>
                                     <p class="font-body-md text-body-md text-on-surface-variant dir-ltr text-left group-hover:text-primary transition-colors">+98 9939189217</p>
                                 </div>
                             </div>
@@ -1475,8 +1460,8 @@
                                     <span class="material-symbols-outlined">location_on</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1">آدرس</h4>
-                                    <p class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">تهران، ایران</p>
+                                    <h4 class="font-headline-sm text-body-lg text-on-surface mb-1" data-i18n="contact-address-label">آدرس</h4>
+                                    <p class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors" data-i18n="contact-address">تهران، ایران</p>
                                 </div>
                             </div>
                         </div>
@@ -1495,70 +1480,69 @@
                         <!-- Success & Error Messages -->
                         <div id="form-success" class="form-success mb-4">
                             <span class="material-symbols-outlined align-middle ml-2">check_circle</span>
-                            درخواست شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.
+                            <span data-i18n="form-success">درخواست شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.</span>
                         </div>
                         <div id="form-error" class="form-error mb-4">
                             <span class="material-symbols-outlined align-middle ml-2">error</span>
-                            خطا در ارسال فرم. لطفاً دوباره تلاش کنید.
+                            <span data-i18n="form-error">خطا در ارسال فرم. لطفاً دوباره تلاش کنید.</span>
                         </div>
 
                         <form class="relative z-10 flex flex-col gap-6" id="contact-form" action="https://formspree.io/f/mjgqpveq" method="POST" novalidate>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="flex flex-col gap-2 relative group">
-                                    <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="name">نام و نام خانوادگی</label>
+                                    <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="name" data-i18n="form-name-label">نام و نام خانوادگی</label>
                                     <input class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all placeholder-white/20" id="name" name="name" placeholder="مثال: علی رضایی" type="text" required>
-                                    <span class="validation-message text-red-400 text-xs hidden">لطفاً نام را وارد کنید</span>
+                                    <span class="validation-message text-red-400 text-xs hidden" data-i18n="form-name-error">لطفاً نام را وارد کنید</span>
                                 </div>
                                 <div class="flex flex-col gap-2 relative group">
-                                    <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="contact">ایمیل یا شماره تماس</label>
+                                    <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="contact" data-i18n="form-contact-label">ایمیل یا شماره تماس</label>
                                     <input class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all placeholder-white/20 dir-ltr text-left" id="contact" name="contact" placeholder="0912... یا email@example.com" type="text" required>
-                                    <span class="validation-message text-red-400 text-xs hidden">لطفاً ایمیل یا شماره معتبر وارد کنید</span>
+                                    <span class="validation-message text-red-400 text-xs hidden" data-i18n="form-contact-error">لطفاً ایمیل یا شماره معتبر وارد کنید</span>
                                 </div>
                             </div>
 
                             <div class="flex flex-col gap-3">
-                                <label class="font-body-md text-body-md text-on-surface-variant">نوع پروژه</label>
+                                <label class="font-body-md text-body-md text-on-surface-variant" data-i18n="form-project-label">نوع پروژه</label>
                                 <div class="flex flex-wrap gap-3">
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="video" checked>
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">تدوین ویدیو</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105" data-i18n="form-project-video">تدوین ویدیو</div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="web">
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">توسعه وب</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105" data-i18n="form-project-web">توسعه وب</div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="mobile">
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">اپلیکیشن موبایل</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105" data-i18n="form-project-mobile">اپلیکیشن موبایل</div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input class="peer sr-only" name="project_type" type="radio" value="other">
-                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105">سایر موارد</div>
+                                        <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 font-body-md text-on-surface-variant peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/10 hover:scale-105" data-i18n="form-project-other">سایر موارد</div>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="flex flex-col gap-2 mt-2 relative">
-                                <label class="font-body-md text-body-md text-on-surface-variant" for="budget">بودجه تقریبی (اختیاری)</label>
+                                <label class="font-body-md text-body-md text-on-surface-variant" for="budget" data-i18n="form-budget-label">بودجه تقریبی (اختیاری)</label>
                                 <select class="w-full bg-black/30 border-b border-white/10 border-t-0 border-x-0 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-t-md transition-all appearance-none cursor-pointer" id="budget" name="budget">
-                                    <option class="bg-surface" disabled selected value="">انتخاب کنید...</option>
-                                    <option class="bg-surface" value="کمتر از ۱۰ میلیون تومان">کمتر از ۱۰ میلیون تومان</option>
-                                    <option class="bg-surface" value="۱۰ تا ۵۰ میلیون تومان">۱۰ تا ۵۰ میلیون تومان</option>
-                                    <option class="bg-surface" value="بیشتر از ۵۰ میلیون تومان">بیشتر از ۵۰ میلیون تومان</option>
+                                    <option class="bg-surface" disabled selected value="" data-i18n="form-budget-placeholder">انتخاب کنید...</option>
+                                    <option class="bg-surface" value="کمتر از ۱۰ میلیون تومان" data-i18n="form-budget-1">کمتر از ۱۰ میلیون تومان</option>
+                                    <option class="bg-surface" value="۱۰ تا ۵۰ میلیون تومان" data-i18n="form-budget-2">۱۰ تا ۵۰ میلیون تومان</option>
+                                    <option class="bg-surface" value="بیشتر از ۵۰ میلیون تومان" data-i18n="form-budget-3">بیشتر از ۵۰ میلیون تومان</option>
                                 </select>
                             </div>
 
                             <div class="flex flex-col gap-2 relative group mt-2">
-                                <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="message">توضیحات پروژه</label>
+                                <label class="font-body-md text-body-md text-on-surface-variant transition-colors group-focus-within:text-primary" for="message" data-i18n="form-message-label">توضیحات پروژه</label>
                                 <textarea class="w-full bg-black/30 border border-white/10 focus:border-primary focus:ring-0 text-on-background font-body-md py-3 px-4 rounded-md transition-all placeholder-white/20 resize-y" id="message" name="message" placeholder="لطفاً جزئیات پروژه خود را اینجا بنویسید..." rows="5" required></textarea>
-                                <span class="validation-message text-red-400 text-xs hidden">لطفاً توضیحات پروژه را وارد کنید</span>
+                                <span class="validation-message text-red-400 text-xs hidden" data-i18n="form-message-error">لطفاً توضیحات پروژه را وارد کنید</span>
                             </div>
 
-                            <!-- Formspree hidden field -->
                             <input type="hidden" name="_subject" value="درخواست جدید از ریتم">
 
                             <div class="mt-4 flex justify-end">
-                                <button class="btn-primary px-8 py-3 rounded-md font-headline-sm text-headline-sm flex items-center gap-2 active:scale-95" type="submit" id="submit-btn">
+                                <button class="btn-primary px-8 py-3 rounded-md font-headline-sm text-headline-sm flex items-center gap-2 active:scale-95" type="submit" id="submit-btn" data-i18n="form-submit">
                                     ارسال درخواست
                                     <span class="material-symbols-outlined text-[20px]">send</span>
                                 </button>
@@ -1583,7 +1567,7 @@
                 <span class="font-body-md text-body-md text-on-surface-variant opacity-80 hover:opacity-100 transition-all hover:text-primary cursor-pointer hover:scale-110">اینستاگرام</span>
             </div>
             <div class="font-body-md text-body-md text-on-surface-variant text-sm">
-                © ۲۰۲۴ ریتم. تمامی حقوق محفوظ است.
+                <span data-i18n="footer-copy">© ۲۰۲۴ ریتم. تمامی حقوق محفوظ است.</span>
             </div>
         </div>
     </footer>
@@ -1610,11 +1594,11 @@
             initParallax();
             initBackToTop();
             initScrollProgress();
-            initChatButton();
             initModal();
             initFAQ();
             initParticles();
             initThemeToggle();
+            initLanguageToggle();
         }
 
         // ═══════════════════════════════════════════════
@@ -1713,17 +1697,28 @@
         }
 
         // ═══════════════════════════════════════════════
-        // TYPING EFFECT
+        // TYPING EFFECT — bilingual
         // ═══════════════════════════════════════════════
         function initTypingEffect() {
             const typingElement = document.getElementById('typing-text');
             if (!typingElement) return;
-            const phrases = ['تدوین خلاقانه', 'توسعه وب', 'اپلیکیشن موبایل', 'ساخت کدهای سایت'];
+            const phrases = {
+                fa: ['تدوین خلاقانه', 'توسعه وب', 'اپلیکیشن موبایل', 'ساخت کدهای سایت'],
+                en: ['Creative Editing', 'Web Development', 'Mobile Apps', 'Code Crafting']
+            };
+            let currentLang = document.documentElement.lang || 'fa';
             let phraseIndex = 0, charIndex = 0, isDeleting = false, isWaiting = false;
+            let timeout = null;
+
+            function getPhrases() {
+                return phrases[currentLang] || phrases.fa;
+            }
+
             function type() {
-                const currentPhrase = phrases[phraseIndex];
+                const currentPhrases = getPhrases();
+                const currentPhrase = currentPhrases[phraseIndex % currentPhrases.length];
                 if (isWaiting) {
-                    setTimeout(() => { isWaiting = false; isDeleting = true; type(); }, 2000);
+                    timeout = setTimeout(() => { isWaiting = false; isDeleting = true; type(); }, 2000);
                     return;
                 }
                 if (!isDeleting) {
@@ -1731,20 +1726,32 @@
                     charIndex++;
                     if (charIndex === currentPhrase.length) {
                         isWaiting = true;
-                        setTimeout(type, 2000);
+                        timeout = setTimeout(type, 2000);
                         return;
                     }
-                    setTimeout(type, 80);
+                    timeout = setTimeout(type, 80);
                 } else {
                     typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
                     charIndex--;
                     if (charIndex === 0) {
                         isDeleting = false;
-                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        phraseIndex = (phraseIndex + 1) % currentPhrases.length;
                     }
-                    setTimeout(type, 40);
+                    timeout = setTimeout(type, 40);
                 }
             }
+
+            // Restart typing when language changes
+            window.restartTyping = function(lang) {
+                if (timeout) clearTimeout(timeout);
+                currentLang = lang || document.documentElement.lang || 'fa';
+                phraseIndex = 0;
+                charIndex = 0;
+                isDeleting = false;
+                isWaiting = false;
+                type();
+            };
+
             type();
         }
 
@@ -1925,29 +1932,6 @@
         }
 
         // ═══════════════════════════════════════════════
-        // FLOATING CONTACT BUTTON (Email/Phone)
-        // ═══════════════════════════════════════════════
-        function initChatButton() {
-            const chatBtn = document.getElementById('chat-float');
-            const icon = document.getElementById('chat-float-icon');
-            if (!chatBtn || !icon) return;
-
-            const isMobile = window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
-
-            if (isMobile) {
-                chatBtn.classList.add('phone-mode');
-                icon.textContent = 'call';
-                chatBtn.setAttribute('aria-label', 'تماس تلفنی');
-                chatBtn.onclick = () => { window.location.href = 'tel:+989939189217'; };
-            } else {
-                chatBtn.classList.add('email-mode');
-                icon.textContent = 'mail';
-                chatBtn.setAttribute('aria-label', 'ارسال ایمیل');
-                chatBtn.onclick = () => { window.location.href = 'mailto:Ritm_FreeLancer@Gmail.com'; };
-            }
-        }
-
-        // ═══════════════════════════════════════════════
         // MODAL
         // ═══════════════════════════════════════════════
         function initModal() {
@@ -2055,6 +2039,284 @@
                     icon.textContent = 'dark_mode';
                 }
             });
+        }
+
+        // ═══════════════════════════════════════════════
+        // LANGUAGE TOGGLE (Bilingual)
+        // ═══════════════════════════════════════════════
+        function initLanguageToggle() {
+            const toggle = document.getElementById('lang-toggle');
+            const label = document.getElementById('lang-label');
+            const html = document.documentElement;
+
+            // Translation dictionary
+            const translations = {
+                fa: {
+                    // Navigation
+                    'nav-home': 'خانه',
+                    'nav-portfolio': 'پورتفولیو',
+                    'nav-services': 'خدمات',
+                    'nav-contact': 'تماس',
+                    'nav-cta': 'شروع پروژه',
+                    // Hero
+                    'hero-badge': 'آژانس خلاقیت دیجیتال',
+                    'hero-title-prefix': 'ریتم –',
+                    'hero-title-typing': 'تدوین خلاقانه',
+                    'hero-desc': 'ما مرزهای بین هنر دیجیتال و مهندسی نرم‌افزار را می‌شکنیم. با ریتم، داستان برند شما با بالاترین استانداردهای بصری و تکنیکال روایت می‌شود.',
+                    'hero-btn-start': 'شروع پروژه',
+                    'hero-btn-portfolio': 'مشاهده پورتفولیو',
+                    // Services preview
+                    'services-title': 'خدمات تخصصی',
+                    'services-sub': 'ترکیب هنر، حرکت و کد برای خلق تجربه‌های بی‌نظیر.',
+                    'service-video-title': 'تدوین و پست‌پروداکشن',
+                    'service-video-desc': 'ویرایش حرفه‌ای ویدیو با پریمیر پرو، اصلاح رنگ با استانداردهای سینمایی.',
+                    'service-web-title': 'توسعه وب',
+                    'service-web-desc': 'ساخت کدهای سایت‌های پیشرفته با عملکرد بالا و طراحی واکنش‌گرا.',
+                    'service-mobile-title': 'اپلیکیشن موبایل',
+                    'service-mobile-desc': 'ساخت اپلیکیشن‌های موبایل پایه با تمرکز بر کارایی و تجربه کاربری.',
+                    // CTA
+                    'cta-title': 'آماده خلق یک اثر ماندگار هستید؟',
+                    'cta-desc': 'تیم متخصص ما آماده است تا ایده‌های شما را به واقعیت تبدیل کند. همین حالا برای مشاوره رایگان با ما تماس بگیرید.',
+                    'cta-btn': 'درخواست مشاوره رایگان',
+                    // Portfolio
+                    'portfolio-title': 'نمونه کارها',
+                    'portfolio-desc': 'مجموعه‌ای از پروژه‌های برگزیده ما در زمینه‌های تدوین ویدیو، توسعه وب و اپلیکیشن موبایل.',
+                    'filter-all': 'همه پروژه‌ها',
+                    'filter-video': 'تدوین ویدیو',
+                    'filter-web': 'توسعه وب',
+                    'filter-mobile': 'اپلیکیشن موبایل',
+                    'p1-title': 'تیزر تبلیغاتی محصول',
+                    'p1-desc': 'تدوین و مونتاژ تیزر ۳۰ ثانیه‌ای با پریمیر پرو، شامل اصلاح رنگ و صداگذاری.',
+                    'p2-title': 'سایت شرکتی مدرن',
+                    'p2-desc': 'طراحی و کدنویسی وب‌سایت شرکتی با انیمیشن‌های روان و بهینه‌سازی سئو.',
+                    'p3-title': 'اپلیکیشن مدیریت وظایف',
+                    'p3-desc': 'اپلیکیشن موبایل ساده برای مدیریت وظایف روزانه با قابلیت ثبت و پیگیری.',
+                    'p4-title': 'موزیک ویدیو',
+                    'p4-desc': 'تدوین موزیک ویدیو با ریتم‌سازی دقیق و افکت‌های بصری جذاب.',
+                    'p5-title': 'وب‌سایت رزومه',
+                    'p5-desc': 'طراحی و پیاده‌سازی وب‌سایت شخصی با تمرکز بر سادگی و سرعت بارگذاری.',
+                    'p6-title': 'اپلیکیشن یادداشت‌برداری',
+                    'p6-desc': 'اپلیکیشن موبایل سبک برای یادداشت‌برداری سریع با ذخیره‌سازی محلی.',
+                    'portfolio-cta': 'درخواست پروژه مشابه',
+                    // Services page
+                    'services-page-title': 'خدمات ما',
+                    'services-page-desc': 'ما با ترکیب هنر دیجیتال و مهندسی نرم‌افزار، راه‌حل‌های خلاقانه و کاربردی برای برند شما ارائه می‌دهیم.',
+                    'sv1-1': 'تدوین فیلم، تیزر و مستند',
+                    'sv1-2': 'اصلاح رنگ حرفه‌ای (Color Grading)',
+                    'sv1-3': 'میکس و مسترینگ صدا',
+                    'sv2-1': 'وب‌سایت‌های شرکتی و شخصی',
+                    'sv2-2': 'طراحی واکنش‌گرا (Responsive)',
+                    'sv2-3': 'بهینه‌سازی سرعت و سئو',
+                    'sv3-1': 'اپلیکیشن‌های مدیریتی و یادداشت',
+                    'sv3-2': 'رابط کاربری ساده و روان',
+                    'sv3-3': 'ذخیره‌سازی محلی و آفلاین',
+                    'faq-title': 'سوالات متداول',
+                    'faq-q1': 'هزینه پروژه‌ها چگونه محاسبه می‌شود؟',
+                    'faq-a1': 'هزینه بر اساس پیچیدگی، زمان تحویل و حجم کار تعیین می‌شود. برای دریافت برآورد دقیق، فرم تماس را پر کنید.',
+                    'faq-q2': 'چه مدت زمانی برای تحویل پروژه نیاز است؟',
+                    'faq-a2': 'بسته به نوع پروژه متفاوت است. معمولاً تدوین ویدیو ۳ تا ۷ روز کاری، وب‌سایت ۱ تا ۲ هفته و اپلیکیشن ۲ تا ۴ هفته زمان می‌برد.',
+                    'faq-q3': 'آیا امکان اصلاح بعد از تحویل وجود دارد؟',
+                    'faq-a3': 'بله، هر پروژه شامل دو مرحله اصلاحات رایگان است تا نتیجه نهایی مطابق انتظار شما باشد.',
+                    'faq-q4': 'آیا برای پروژه‌های بزرگ قرارداد رسمی منعقد می‌شود؟',
+                    'faq-a4': 'بله، برای پروژه‌های بزرگ‌تر، قرارداد رسمی با جزئیات کامل تنظیم می‌شود تا حقوق هر دو طرف محفوظ باشد.',
+                    'services-cta': 'دریافت مشاوره رایگان',
+                    // Contact
+                    'contact-title': 'آغاز همکاری',
+                    'contact-desc': 'ایده‌های خود را با ما در میان بگذارید تا با بالاترین کیفیت و در کمترین زمان آنها را به واقعیت تبدیل کنیم.',
+                    'contact-info-title': 'اطلاعات تماس',
+                    'contact-email-label': 'ایمیل ارتباطی',
+                    'contact-phone-label': 'تلفن تماس',
+                    'contact-address-label': 'آدرس',
+                    'contact-address': 'تهران، ایران',
+                    'form-success': 'درخواست شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.',
+                    'form-error': 'خطا در ارسال فرم. لطفاً دوباره تلاش کنید.',
+                    'form-name-label': 'نام و نام خانوادگی',
+                    'form-name-error': 'لطفاً نام را وارد کنید',
+                    'form-contact-label': 'ایمیل یا شماره تماس',
+                    'form-contact-error': 'لطفاً ایمیل یا شماره معتبر وارد کنید',
+                    'form-project-label': 'نوع پروژه',
+                    'form-project-video': 'تدوین ویدیو',
+                    'form-project-web': 'توسعه وب',
+                    'form-project-mobile': 'اپلیکیشن موبایل',
+                    'form-project-other': 'سایر موارد',
+                    'form-budget-label': 'بودجه تقریبی (اختیاری)',
+                    'form-budget-placeholder': 'انتخاب کنید...',
+                    'form-budget-1': 'کمتر از ۱۰ میلیون تومان',
+                    'form-budget-2': '۱۰ تا ۵۰ میلیون تومان',
+                    'form-budget-3': 'بیشتر از ۵۰ میلیون تومان',
+                    'form-message-label': 'توضیحات پروژه',
+                    'form-message-error': 'لطفاً توضیحات پروژه را وارد کنید',
+                    'form-submit': 'ارسال درخواست',
+                    // Footer
+                    'footer-copy': '© ۲۰۲۴ ریتم. تمامی حقوق محفوظ است.'
+                },
+                en: {
+                    'nav-home': 'Home',
+                    'nav-portfolio': 'Portfolio',
+                    'nav-services': 'Services',
+                    'nav-contact': 'Contact',
+                    'nav-cta': 'Start Project',
+                    'hero-badge': 'Digital Creative Agency',
+                    'hero-title-prefix': 'RITM –',
+                    'hero-title-typing': 'Creative Editing',
+                    'hero-desc': 'We bridge the gap between digital art and software engineering. With RITM, your brand story is told with the highest visual and technical standards.',
+                    'hero-btn-start': 'Start Project',
+                    'hero-btn-portfolio': 'View Portfolio',
+                    'services-title': 'Expert Services',
+                    'services-sub': 'Combining art, motion, and code to craft unique experiences.',
+                    'service-video-title': 'Video Editing & Post-Production',
+                    'service-video-desc': 'Professional video editing with Premiere Pro, color grading to cinematic standards.',
+                    'service-web-title': 'Web Development',
+                    'service-web-desc': 'Building advanced, high‑performance websites with responsive design.',
+                    'service-mobile-title': 'Mobile App (Basic)',
+                    'service-mobile-desc': 'Developing simple, functional mobile apps focused on efficiency and user experience.',
+                    'cta-title': 'Ready to create a lasting work?',
+                    'cta-desc': 'Our expert team is ready to turn your ideas into reality. Contact us for a free consultation today.',
+                    'cta-btn': 'Request Free Consultation',
+                    'portfolio-title': 'Our Work',
+                    'portfolio-desc': 'A selection of our featured projects in video editing, web development, and mobile apps.',
+                    'filter-all': 'All Projects',
+                    'filter-video': 'Video Editing',
+                    'filter-web': 'Web Development',
+                    'filter-mobile': 'Mobile App',
+                    'p1-title': 'Product Ad Teaser',
+                    'p1-desc': 'Editing and assembling a 30‑second teaser with Premiere Pro, including color grading and sound design.',
+                    'p2-title': 'Modern Corporate Website',
+                    'p2-desc': 'Design and coding of a corporate website with smooth animations and SEO optimization.',
+                    'p3-title': 'Task Management App',
+                    'p3-desc': 'A simple mobile app for daily task management with tracking and logging features.',
+                    'p4-title': 'Music Video',
+                    'p4-desc': 'Editing a music video with precise rhythm and stunning visual effects.',
+                    'p5-title': 'Resume Website',
+                    'p5-desc': 'Design and implementation of a personal website focused on simplicity and loading speed.',
+                    'p6-title': 'Note‑Taking App',
+                    'p6-desc': 'A lightweight mobile app for quick note‑taking with local storage.',
+                    'portfolio-cta': 'Request Similar Project',
+                    'services-page-title': 'Our Services',
+                    'services-page-desc': 'We deliver creative and practical solutions for your brand by combining digital art and software engineering.',
+                    'sv1-1': 'Film, teaser, and documentary editing',
+                    'sv1-2': 'Professional color grading',
+                    'sv1-3': 'Audio mixing and mastering',
+                    'sv2-1': 'Corporate & personal websites',
+                    'sv2-2': 'Responsive design',
+                    'sv2-3': 'Speed and SEO optimization',
+                    'sv3-1': 'Management and note‑taking apps',
+                    'sv3-2': 'Simple and intuitive UI',
+                    'sv3-3': 'Local and offline storage',
+                    'faq-title': 'Frequently Asked Questions',
+                    'faq-q1': 'How are project costs calculated?',
+                    'faq-a1': 'Costs are determined based on complexity, delivery time, and workload. Fill out the contact form for a detailed estimate.',
+                    'faq-q2': 'How long does a project take?',
+                    'faq-a2': 'It depends on the project. Video editing takes 3‑7 business days, websites 1‑2 weeks, and mobile apps 2‑4 weeks.',
+                    'faq-q3': 'Is it possible to make revisions after delivery?',
+                    'faq-a3': 'Yes, each project includes two rounds of free revisions to ensure the final result meets your expectations.',
+                    'faq-q4': 'Is a formal contract signed for large projects?',
+                    'faq-a4': 'Yes, for larger projects we prepare a formal contract with full details to protect both parties.',
+                    'services-cta': 'Get Free Consultation',
+                    'contact-title': 'Start Collaboration',
+                    'contact-desc': 'Share your ideas with us and we’ll bring them to life with the highest quality in the shortest time.',
+                    'contact-info-title': 'Contact Information',
+                    'contact-email-label': 'Email',
+                    'contact-phone-label': 'Phone',
+                    'contact-address-label': 'Address',
+                    'contact-address': 'Tehran, Iran',
+                    'form-success': 'Your request has been sent successfully. We will contact you soon.',
+                    'form-error': 'Error submitting form. Please try again.',
+                    'form-name-label': 'Full Name',
+                    'form-name-error': 'Please enter your name',
+                    'form-contact-label': 'Email or Phone',
+                    'form-contact-error': 'Please enter a valid email or phone number',
+                    'form-project-label': 'Project Type',
+                    'form-project-video': 'Video Editing',
+                    'form-project-web': 'Web Development',
+                    'form-project-mobile': 'Mobile App',
+                    'form-project-other': 'Other',
+                    'form-budget-label': 'Estimated Budget (optional)',
+                    'form-budget-placeholder': 'Select...',
+                    'form-budget-1': 'Less than 10 million Toman',
+                    'form-budget-2': '10‑50 million Toman',
+                    'form-budget-3': 'More than 50 million Toman',
+                    'form-message-label': 'Project Description',
+                    'form-message-error': 'Please enter project details',
+                    'form-submit': 'Send Request',
+                    'footer-copy': '© 2024 RITM. All rights reserved.'
+                }
+            };
+
+            let currentLang = 'fa';
+            if (html.lang === 'en') currentLang = 'en';
+            updateLanguage(currentLang);
+
+            toggle.addEventListener('click', () => {
+                const newLang = currentLang === 'fa' ? 'en' : 'fa';
+                updateLanguage(newLang);
+            });
+
+            function updateLanguage(lang) {
+                currentLang = lang;
+                html.lang = lang;
+                html.dir = lang === 'fa' ? 'rtl' : 'ltr';
+                label.textContent = lang === 'fa' ? 'English' : 'فارسی';
+
+                // Update all elements with data-i18n
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    const translation = translations[lang]?.[key] || translations.fa[key] || key;
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+                        // For form inputs, update placeholder if available
+                        if (el.placeholder && translations[lang]?.[key]) {
+                            el.placeholder = translation;
+                        }
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = translation;
+                    } else {
+                        // Preserve HTML inside the element (e.g., <span> inside)
+                        if (el.querySelector('.text-glow')) {
+                            // For hero title with glow, keep the span
+                            const prefix = translations[lang]?.['hero-title-prefix'] || 'ریتم –';
+                            const typingText = translations[lang]?.['hero-title-typing'] || 'تدوین خلاقانه';
+                            if (el.id === 'typing-text') {
+                                // handled by typing effect separately
+                            } else {
+                                el.innerHTML = `${prefix} <span class="text-primary text-glow typing-cursor" id="typing-text">${typingText}</span>`;
+                            }
+                        } else {
+                            el.textContent = translation;
+                        }
+                    }
+                });
+
+                // Restart typing effect with new language
+                if (window.restartTyping) {
+                    window.restartTyping(lang);
+                }
+
+                // Update filter chips text
+                document.querySelectorAll('.filter-chip').forEach(chip => {
+                    const key = chip.dataset.i18n;
+                    if (key && translations[lang]?.[key]) {
+                        chip.textContent = translations[lang][key];
+                    }
+                });
+
+                // Update placeholders that are not covered by data-i18n
+                const searchInput = document.getElementById('portfolio-search');
+                if (searchInput) {
+                    searchInput.placeholder = lang === 'fa' ? 'جستجو...' : 'Search...';
+                }
+                const nameInput = document.getElementById('name');
+                if (nameInput) {
+                    nameInput.placeholder = lang === 'fa' ? 'مثال: علی رضایی' : 'e.g. John Doe';
+                }
+                const contactInput = document.getElementById('contact');
+                if (contactInput) {
+                    contactInput.placeholder = lang === 'fa' ? '0912... یا email@example.com' : '0912... or email@example.com';
+                }
+                const messageInput = document.getElementById('message');
+                if (messageInput) {
+                    messageInput.placeholder = lang === 'fa' ? 'لطفاً جزئیات پروژه خود را اینجا بنویسید...' : 'Please write your project details here...';
+                }
+            }
         }
     </script>
 </body>
